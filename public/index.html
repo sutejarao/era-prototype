@@ -123,7 +123,7 @@
     .result-card {
       position: relative;
       margin-top: 12px;
-      min-height: 180px;
+      flex-shrink: 0;
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
       transition: background 0.12s ease, transform 0.12s ease;
@@ -142,15 +142,9 @@
 
     .result-card__image {
       position: relative;
-      width: 120px;
-      flex-shrink: 0;
-      height: 152px;
       background: var(--cream-dark);
-      border-bottom: var(--border-width) solid var(--border-strong);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--space-lg);
+      border-right: var(--border-width) solid var(--border-strong);
+      overflow: hidden;
     }
 
     .result-card__image-caption {
@@ -170,13 +164,25 @@
     }
 
     .result-card__body {
-      flex: 1;
-      min-width: 0;
       padding: var(--space-lg);
       padding-bottom: 20px;
       display: flex;
       flex-direction: column;
       gap: var(--space-xs);
+    }
+
+    /* Green-current-location result cards: CSS Grid so body drives card height */
+    #screen-green-current-location .result-card {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+    }
+    #screen-green-current-location .result-card__image {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    #screen-green-current-location .result-card__body {
+      grid-column: 2;
+      grid-row: 1;
     }
 
     .card-title {
