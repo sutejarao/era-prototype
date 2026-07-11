@@ -1265,6 +1265,83 @@
     </section>
 
     <!-- ══════════════════════════════════════════════════════════
+         SCREEN — Quiz Q1 (Flow 2: Surprise Me)
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="screen-quiz-q1" class="screen" data-screen="quiz-q1" aria-label="Surprise Me — Question 1">
+      <div class="quiz-content">
+
+        <!-- Progress -->
+        <div class="progress-wrap" style="margin-top: var(--space-lg);">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-sm);">
+            <span style="font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey-3);">Question 1 of 3</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width: 33%;"></div>
+          </div>
+        </div>
+
+        <!-- Question -->
+        <p class="quiz-question" style="margin-top: 16px;">What kind of moment interests you?</p>
+
+        <!-- Options -->
+        <div style="margin-top: 16px; display: flex; flex-direction: column;">
+
+          <div class="option-card" role="button" tabindex="0"
+               data-answer="q1" data-value="world-changing"
+               aria-label="Something that changed the world">
+            <span class="option-card__emoji" aria-hidden="true">🏛</span>
+            <div class="option-card__text">
+              <span class="option-card__title">Something that changed the world</span>
+              <span class="option-card__sub">Revolutions, discoveries, turning points</span>
+            </div>
+          </div>
+
+          <div class="option-card" role="button" tabindex="0"
+               data-answer="q1" data-value="beauty-spectacle"
+               aria-label="A moment of beauty or spectacle">
+            <span class="option-card__emoji" aria-hidden="true">🎭</span>
+            <div class="option-card__text">
+              <span class="option-card__title">A moment of beauty or spectacle</span>
+              <span class="option-card__sub">Art, architecture, natural wonders</span>
+            </div>
+          </div>
+
+          <div class="option-card" role="button" tabindex="0"
+               data-answer="q1" data-value="conflict-survival"
+               aria-label="Conflict and survival">
+            <span class="option-card__emoji" aria-hidden="true">⚔️</span>
+            <div class="option-card__text">
+              <span class="option-card__title">Conflict and survival</span>
+              <span class="option-card__sub">Battles, sieges, escapes</span>
+            </div>
+          </div>
+
+          <div class="option-card" role="button" tabindex="0"
+               data-answer="q1" data-value="everyday-life"
+               aria-label="Everyday life in another era">
+            <span class="option-card__emoji" aria-hidden="true">🌍</span>
+            <div class="option-card__text">
+              <span class="option-card__title">Everyday life in another era</span>
+              <span class="option-card__sub">Markets, festivals, daily routines</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Next button — disabled until selection -->
+        <div style="margin-top: 20px;">
+          <button
+            class="btn-primary btn-full quiz-next"
+            data-goto="quiz-q2"
+            disabled
+            style="opacity: 0.4; pointer-events: none;"
+          >Next</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
          SCREEN 3 — Precision Search
     ═══════════════════════════════════════════════════════════ -->
     <section id="screen-precision-search" class="screen" data-screen="precision-search" aria-label="Precision Search">

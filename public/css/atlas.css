@@ -1364,6 +1364,89 @@ textarea.input-field {
 .ready-content,
 .ps-content,
 .explore-content,
-.location-content {
+.location-content,
+.quiz-content {
   padding-bottom: 80px;
+}
+
+/* ── Quiz screens ────────────────────────────────────────── */
+.quiz-content {
+  padding: 52px var(--space-2xl) var(--space-3xl);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.quiz-question {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--teal);
+  line-height: 1.25;
+}
+
+/* Option card — full-width stacked answer tile */
+.option-card {
+  background: var(--cream);
+  border: var(--border-width) solid var(--border-strong);
+  border-left: var(--border-width-heavy) solid var(--border-strong);
+  border-radius: var(--radius-none);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  cursor: pointer;
+  transition: border-color 0.12s ease, background 0.12s ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.option-card + .option-card {
+  margin-top: var(--space-sm);
+}
+
+.option-card:active {
+  background: var(--cream-dark);
+}
+
+.option-card.selected {
+  border-left-color: var(--teal);
+  background: var(--cream-dark);
+}
+
+.option-card__emoji {
+  font-size: 22px;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 32px;
+  text-align: center;
+}
+
+.option-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.option-card__title {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--black);
+  line-height: 1.2;
+}
+
+.option-card__sub {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--grey-2);
+  line-height: 1.4;
 }

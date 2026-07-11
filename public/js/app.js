@@ -29,7 +29,10 @@
     { id: 'green-preparation',          title: 'Preparation',         noNav: false, noBack: false },
     { id: 'green-ready',                title: 'Ready',               noNav: false, noBack: false },
 
-    // ── Flow C — Surprise Me ────────────────────────────────────
+    // ── Flow 2 — Surprise Me / Quiz ─────────────────────────────
+    { id: 'quiz-q1',                    title: 'Surprise Me',         noNav: false, noBack: false },
+
+    // ── Flow C — Surprise Me (legacy) ───────────────────────────
     { id: 'surprise-intent-1',          title: 'Tell Us More',        noNav: false, noBack: false },
     { id: 'surprise-intent-2',          title: 'Almost There',        noNav: false, noBack: false },
     { id: 'surprise-curated-results',   title: 'Picked for You',      noNav: false, noBack: false },
@@ -312,6 +315,30 @@
       screen.querySelectorAll('[data-tab-panel]').forEach(p => p.classList.add('hidden'));
       const panel = screen.querySelector(`[data-tab-panel="${panelId}"]`);
       if (panel) panel.classList.remove('hidden');
+    });
+
+    // Quiz answer store — keyed by question id
+    window.quizAnswers = window.quizAnswers || {};
+
+    // Option card selection — delegated on document
+    document.addEventListener('click', (e) => {
+      const card = e.target.closest('.option-card[data-answer]');
+      if (!card) return;
+      const group = card.dataset.answer;
+      const value = card.dataset.value;
+      // Deselect siblings in same group
+      document.querySelectorAll(`.option-card[data-answer="${group}"]`).forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      window.quizAnswers[group] = value;
+      // Enable the Next button in the same screen
+      const screen = card.closest('.screen');
+      if (!screen) return;
+      const nextBtn = screen.querySelector('.quiz-next');
+      if (nextBtn) {
+        nextBtn.disabled = false;
+        nextBtn.style.opacity = '1';
+        nextBtn.style.pointerEvents = 'auto';
+      }
     });
 
     // Demo mode toggle
