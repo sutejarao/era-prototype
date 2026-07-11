@@ -393,22 +393,55 @@
       background: var(--cream);
       border: var(--border-width) solid var(--teal);
       border-left: var(--border-width-heavy) solid var(--teal);
-      padding: var(--space-lg);
-      display: flex;
-      align-items: flex-start;
-      gap: var(--space-md);
+      overflow: hidden;
       margin-top: var(--space-lg);
     }
 
-    .location-card__icon {
-      flex-shrink: 0;
+    .location-card__map {
+      position: relative;
+      height: 180px;
+      background: var(--cream-dark);
+      overflow: hidden;
+    }
+
+    .location-card__map svg.map-illustration {
+      width: 100%;
+      height: 100%;
+    }
+
+    .location-card__pin {
+      position: absolute;
+      /* Cape Canaveral sits on the east coast mid-Florida — pin at ~58% x, 52% y */
+      left: 58%;
+      top: 46%;
+      transform: translate(-50%, -100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .location-card__pin-icon {
       color: var(--teal);
-      margin-top: 2px;
+      filter: drop-shadow(0 1px 0 rgba(28,92,92,0.35));
+    }
+
+    /* Small grounding dot beneath pin base */
+    .location-card__pin-dot {
+      width: 6px;
+      height: 3px;
+      background: rgba(28, 92, 92, 0.3);
+      border-radius: 50%;
+      margin-top: -1px;
+    }
+
+    .location-card__footer {
+      padding: var(--space-md) var(--space-lg);
+      border-top: var(--border-width) solid var(--border);
     }
 
     .location-card__name {
       font-family: var(--font-display);
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 600;
       color: var(--teal);
       text-transform: uppercase;
@@ -421,7 +454,83 @@
       font-size: 12px;
       font-weight: 400;
       color: var(--grey-2);
-      margin-top: 4px;
+      margin-top: 3px;
+    }
+
+    /* Time scrub */
+    .time-scrub {
+      margin-top: var(--space-xl);
+    }
+
+    .time-scrub__label {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: var(--space-md);
+      display: block;
+    }
+
+    .time-scrub__track-wrap {
+      position: relative;
+      padding-bottom: var(--space-xl);
+    }
+
+    .time-scrub__track {
+      height: 6px;
+      background: var(--cream-dark);
+      border: var(--border-width) solid var(--border-strong);
+      border-radius: var(--radius-pill);
+      position: relative;
+    }
+
+    .time-scrub__fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 70%;
+      background: var(--teal);
+      border-radius: var(--radius-pill);
+    }
+
+    .time-scrub__handle {
+      position: absolute;
+      top: 50%;
+      left: 70%;
+      transform: translate(-50%, -50%);
+      width: 14px;
+      height: 14px;
+      background: var(--teal);
+      border: 2px solid var(--white);
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px var(--teal);
+    }
+
+    .time-scrub__ticks {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 2px;
+    }
+
+    .time-scrub__tick {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--grey-3);
+    }
+
+    .time-scrub__tick--now {
+      font-weight: 600;
+      color: var(--teal);
     }
 
     /* ── Red-blocked screen ─────────────────────────────────── */
@@ -953,6 +1062,33 @@
          SCREEN 4 — Explore Results
     ═══════════════════════════════════════════════════════════ -->
     <section id="screen-explore-results" class="screen" data-screen="explore-results" aria-label="Results">
+      <div class="results-content">
+
+        <p class="results-eyebrow">1 result found</p>
+
+        <div
+          class="result-card"
+          role="button"
+          tabindex="0"
+          aria-label="The Great Fire of London — amber risk, view risk assessment"
+          data-goto="amber-risk"
+        >
+          <div class="result-card__image">
+            <p class="result-card__image-caption">Historical illustration of the Great Fire</p>
+            <div class="result-card__badge">
+              <span class="risk-badge amber">Caution</span>
+            </div>
+          </div>
+          <div class="result-card__body">
+            <h3 class="card-title">The Great Fire of London</h3>
+            <p class="card-subtitle">Sept 2, 1666 &middot; Pudding Lane, London</p>
+            <p class="card-body">Fire started in a bakery on Pudding Lane and spread rapidly through wooden buildings, driven by wind and dry conditions.</p>
+          </div>
+        </div>
+
+        <p class="results-caption">All search fields matched &mdash; showing exact result</p>
+
+      </div>
     </section>
 
     <!-- ══════════════════════════════════════════════════════════
@@ -987,19 +1123,97 @@
 
         <p class="results-eyebrow" style="padding-top: var(--space-2xl);">Your Current Location</p>
 
+        <!-- Location card: map illustration + footer -->
         <div class="location-card">
-          <div class="location-card__icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-              <circle cx="12" cy="9" r="2.5"/>
+
+          <!-- Map illustration -->
+          <div class="location-card__map" aria-hidden="true">
+            <!-- Florida peninsula — flat geometric poster style, cream/teal only -->
+            <svg class="map-illustration" viewBox="0 0 327 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <!-- Ocean fill -->
+              <rect width="327" height="180" fill="#E8DBBD"/>
+              <!-- Florida peninsula body — simplified flat silhouette -->
+              <path d="
+                M 60 0
+                L 180 0
+                L 185 20
+                L 188 55
+                L 192 90
+                L 196 115
+                L 200 130
+                L 208 148
+                L 210 158
+                L 205 165
+                L 196 168
+                L 185 162
+                L 175 150
+                L 165 138
+                L 152 128
+                L 138 122
+                L 120 120
+                L 108 124
+                L 95 132
+                L 82 136
+                L 68 132
+                L 58 122
+                L 52 108
+                L 50 90
+                L 52 65
+                L 55 40
+                L 58 18
+                Z
+              " fill="#C8BAA2" opacity="0.6"/>
+              <!-- Subtle inland lake shapes -->
+              <ellipse cx="110" cy="85" rx="12" ry="7" fill="#E8DBBD" opacity="0.8"/>
+              <ellipse cx="130" cy="105" rx="8" ry="5" fill="#E8DBBD" opacity="0.6"/>
+              <!-- Atlantic coast line (east edge) -->
+              <path d="M 185 0 L 192 55 L 196 110 L 205 155" stroke="#1C5C5C" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.3"/>
+              <!-- State outline accent -->
+              <path d="
+                M 180 0 L 185 20 L 188 55 L 192 90 L 196 115
+                L 200 130 L 208 148 L 210 158 L 205 165
+                L 196 168 L 185 162 L 175 150
+              " stroke="#1C5C5C" stroke-width="1.5" fill="none" opacity="0.4"/>
             </svg>
+
+            <!-- Cape Canaveral pin — positioned on east coast mid-Florida -->
+            <div class="location-card__pin" aria-label="Cape Canaveral marker">
+              <div class="location-card__pin-icon">
+                <svg width="24" height="30" viewBox="0 0 24 30" fill="none">
+                  <path d="M12 0C7.58 0 4 3.58 4 8c0 6 8 16 8 16s8-10 8-16c0-4.42-3.58-8-8-8z" fill="#1C5C5C"/>
+                  <circle cx="12" cy="8" r="3.5" fill="#F3E9D2"/>
+                </svg>
+              </div>
+              <div class="location-card__pin-dot"></div>
+            </div>
           </div>
-          <div>
+
+          <!-- Card footer: name + detected label -->
+          <div class="location-card__footer">
             <p class="location-card__name">Cape Canaveral, Florida</p>
             <p class="location-card__meta">Detected via device location</p>
           </div>
+
+        </div><!-- /.location-card -->
+
+        <!-- Time scrub — decorative, non-interactive -->
+        <div class="time-scrub">
+          <span class="time-scrub__label">Browse Across Time</span>
+          <div class="time-scrub__track-wrap" aria-hidden="true">
+            <div class="time-scrub__track">
+              <div class="time-scrub__fill"></div>
+              <div class="time-scrub__handle"></div>
+            </div>
+            <div class="time-scrub__ticks">
+              <span class="time-scrub__tick">Ancient</span>
+              <span class="time-scrub__tick">Medieval</span>
+              <span class="time-scrub__tick">Modern</span>
+              <span class="time-scrub__tick time-scrub__tick--now">Now</span>
+            </div>
+          </div>
         </div>
 
+        <!-- Section header -->
         <div style="margin-top: var(--space-xl);">
           <p class="section-header__title">What Happened Here?</p>
           <p class="explore-header__sub" style="margin-top: var(--space-xs);">Significant moments across time at this location</p>

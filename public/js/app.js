@@ -170,16 +170,15 @@
 
   // ─── Navigate Back ────────────────────────────────────────────
   function navigateBack() {
-    if (history.length <= 1) return;
+    if (history.length <= 1 || transitioning) return;
 
-    const fromId = history.pop();
-    const toId   = history[history.length - 1];
+    // Determine destination BEFORE modifying history so transition()
+    // can still read history[last] as the correct fromId (current screen).
+    const toId = history[history.length - 2];
 
-    transition(toId, 'back');
+    transition(toId, 'back'); // reads history[last] = current screen as fromId ✓
+    history.pop();            // then discard current screen, matching navigateTo's push-after pattern
     updateNavBar(toId);
-
-    // Suppress unused-variable lint — fromId kept for clarity
-    void fromId;
   }
 
   // ─── Event Delegation ─────────────────────────────────────────
