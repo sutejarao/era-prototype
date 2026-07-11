@@ -141,24 +141,32 @@
     fromEl.classList.add(exitClass);
     toEl.classList.remove(enterClass);
 
-    // Clean up after the transition completes
-    const cleanup = () => {
-      fromEl.classList.remove('active', exitClass);
-      toEl.classList.remove(enterClass);
-      transitioning = false;
-    };
-
-    // Use transitionend on the incoming screen as the authoritative signal,
-    // with a setTimeout fallback in case the event fires on a child element.
+    // Clean up after the transition completes.
+    // IMPORTANT: filter to e.target === toEl to ignore transitionend events
+    // that bubble up from child elements (e.g. result-card, option-card)
+    // which have their own shorter CSS transitions. Without this filter,
+    // { once: true } would fire on the first child event (~120ms) and
+    // consume the listener before the screen's own transform (~350ms).
     let cleaned = false;
     const safeCleanup = () => {
       if (cleaned) return;
       cleaned = true;
-      cleanup();
+      fromEl.classList.remove('active', exitClass);
+      toEl.classList.remove(enterClass);
+      transitioning = false;
+      console.log(`[Era] transition complete: ${fromId} → ${toId} | stack:`, [...history]);
     };
 
-    toEl.addEventListener('transitionend', safeCleanup, { once: true });
-    setTimeout(safeCleanup, DURATION + 50);
+    const onTransitionEnd = (e) => {
+      // Only respond to the screen element's own transform transition,
+      // not bubbled events from child elements.
+      if (e.target !== toEl) return;
+      toEl.removeEventListener('transitionend', onTransitionEnd);
+      safeCleanup();
+    };
+
+    toEl.addEventListener('transitionend', onTransitionEnd);
+    setTimeout(safeCleanup, DURATION + 50); // fallback if transitionend never fires
   }
 
   // ─── Navigate Forward ─────────────────────────────────────────
@@ -183,18 +191,26 @@
 
   // ─── Event Delegation ─────────────────────────────────────────
   function handleClick(e) {
-    // [data-option] — selectable option card: flash selection, then navigate
+    // ① Back button — checked FIRST, highest priority.
+    //   pointer-events: none on the inner SVG (see CSS) ensures e.target
+    //   is always the <button> itself, never a child SVG path.
+    const backBtn = e.target.closest('#nav-back');
+    if (backBtn) {
+      console.log('[Era] back tap | stack before:', [...history], '| transitioning:', transitioning);
+      navigateBack();
+      return;
+    }
+
+    // ② Option card — flash selection, then navigate
     const optionCard = e.target.closest('[data-option][data-goto]');
     if (optionCard) {
       if (transitioning) return;
       const targetId = optionCard.dataset.goto;
-      // Deselect siblings, select tapped card
       const siblings = optionCard.closest('.option-stack')
         ? optionCard.closest('.option-stack').querySelectorAll('[data-option]')
         : [];
       siblings.forEach(s => s.classList.remove('selected'));
       optionCard.classList.add('selected');
-      // Brief pause so the selection is visible before transition
       setTimeout(() => {
         optionCard.classList.remove('selected');
         navigateTo(targetId);
@@ -202,18 +218,11 @@
       return;
     }
 
-    // [data-goto] — navigate to a named screen
+    // ③ Any other [data-goto] element
     const gotoBtn = e.target.closest('[data-goto]');
     if (gotoBtn) {
-      const targetId = gotoBtn.dataset.goto;
-      navigateTo(targetId);
-      return;
-    }
-
-    // Back button
-    const backBtn = e.target.closest('#nav-back');
-    if (backBtn) {
-      navigateBack();
+      console.log('[Era] goto tap →', gotoBtn.dataset.goto, '| transitioning:', transitioning);
+      navigateTo(gotoBtn.dataset.goto);
       return;
     }
   }

@@ -1018,6 +1018,13 @@ textarea.input-field {
 .proto-nav__back:hover  { opacity: 0.75; }
 .proto-nav__back:active { opacity: 0.5; }
 
+/* Prevent SVG children from being the click target — ensures e.target
+   is always the <button> itself so .closest('#nav-back') matches immediately */
+.proto-nav__back svg,
+.proto-nav__back svg * {
+  pointer-events: none;
+}
+
 .proto-nav__title {
   font-family: var(--font-display);
   font-size: var(--text-section);
