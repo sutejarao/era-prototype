@@ -121,6 +121,7 @@
 
     /* result-card is defined in atlas.css; these extend it for screens */
     .result-card {
+      position: relative;
       margin-top: 12px;
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
@@ -1350,8 +1351,8 @@
         <div class="result-card" role="button" tabindex="0" aria-label="The Moon Landing, July 1969 — view details" data-goto="green-detail" style="margin-top: 12px;">
           <div class="result-card__image">
             <img src="/assets/img/moon-landing.png" alt="Apollo 11 launch, Cape Canaveral" />
-            <span class="result-card__badge"><span class="risk-badge green">Safe</span></span>
           </div>
+          <span class="result-card__badge"><span class="risk-badge green">Safe</span></span>
           <div class="result-card__body">
             <p class="card-title">The Moon Landing</p>
             <p class="card-subtitle">July 20, 1969 &middot; Apollo 11 launch</p>
@@ -1363,8 +1364,8 @@
         <div class="result-card" style="margin-top: 12px; opacity: 0.5; pointer-events: none;" aria-hidden="true">
           <div class="result-card__image">
             <img src="/assets/img/mercury.png" alt="Mercury-Atlas 6 launch" />
-            <span class="result-card__badge"><span class="risk-badge green">Safe</span></span>
           </div>
+          <span class="result-card__badge"><span class="risk-badge green">Safe</span></span>
           <div class="result-card__body">
             <p class="card-title">Mercury-Atlas 6</p>
             <p class="card-subtitle">Feb 20, 1962 &middot; John Glenn orbits Earth</p>
@@ -1376,8 +1377,8 @@
         <div class="result-card" style="margin-top: 12px; opacity: 0.5; pointer-events: none;" aria-hidden="true">
           <div class="result-card__image">
             <img src="/assets/img/apollo-1.png" alt="Apollo 1 launch pad, Cape Canaveral" />
-            <span class="result-card__badge"><span class="risk-badge red">Blocked</span></span>
           </div>
+          <span class="result-card__badge"><span class="risk-badge red">Blocked</span></span>
           <div class="result-card__body">
             <p class="card-title">Apollo 1 Fire</p>
             <p class="card-subtitle">Jan 27, 1967 &middot; Cape Canaveral, FL</p>
@@ -1544,7 +1545,7 @@
             <p style="font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey-3);">Risk summary</p>
             <p style="font-family: var(--font-body); font-size: 12px; font-weight: 400; color: var(--grey-1); line-height: 1.6; margin-top: var(--space-xs);">Weather: Clear, 28&deg;C. No extreme events. Large public gathering &mdash; standard crowd conditions.</p>
             <!-- CTA inside the card -->
-            <button type="button" data-goto="green-current-journey" style="display: flex; align-items: center; justify-content: center; width: 100%; min-height: 48px; margin-top: var(--space-lg); font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; background: var(--forest); color: var(--white); border: none; cursor: pointer;">Prepare for this journey &rarr;</button>
+            <button type="button" data-goto="green-current-journey" style="display: flex; align-items: center; justify-content: center; width: 100%; min-height: 48px; margin-top: var(--space-lg); margin-bottom: 16px; font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; background: var(--forest); color: var(--white); border: none; cursor: pointer;">Prepare for this journey &rarr;</button>
           </div>
         </div>
 
@@ -1569,11 +1570,11 @@
         <p style="font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey-3); padding-top: var(--space-2xl);">Journey Overview</p>
 
         <!-- Journey card -->
-        <div class="journey-card" style="margin-top: var(--space-md); border-top-color: var(--forest);">
+        <div class="journey-card" style="margin-top: var(--space-md); border-top-color: var(--forest); position: relative;">
+          <span class="result-card__badge"><span class="risk-badge green">Safe</span></span>
           <div class="journey-card__body">
             <p style="font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--teal); letter-spacing: 0.02em;">The Moon Landing</p>
             <p style="font-family: var(--font-body); font-size: 12px; font-weight: 400; color: var(--grey-2); margin-top: 2px;">July 20, 1969 &middot; Cape Canaveral, FL</p>
-            <span class="risk-badge green" style="margin-top: var(--space-sm); display: inline-block;">Safe &ndash; Green</span>
             <div class="divider"></div>
             <p style="font-family: var(--font-body); font-size: 12px; color: var(--grey-1); line-height: 1.6;">&#128197; Departing: 18 Aug 2026 &middot; Duration: 6 hours</p>
             <p style="font-family: var(--font-body); font-size: 12px; color: var(--grey-1); line-height: 1.6; margin-top: var(--space-xs);">&#128085; Summer clothing &middot; Sun protection</p>
