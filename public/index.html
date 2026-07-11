@@ -904,6 +904,28 @@
 
     .btn-dark:active { background: #333; }
 
+    /* Featured box — faded background image with cream overlay */
+    .featured-card--bg-image {
+      background-image:
+        linear-gradient(rgba(243, 233, 210, 0.88), rgba(243, 233, 210, 0.88)),
+        url('assets/img/moon-landing.png');
+      background-size: auto, cover;
+      background-position: center, center;
+      background-repeat: no-repeat, no-repeat;
+    }
+
+    /* ── Bottom nav clearance — late rule beats padding shorthand above ── */
+    .results-content,
+    .blocked-content,
+    .prep-content,
+    .intent-content,
+    .ready-content,
+    .ps-content,
+    .explore-content,
+    .location-content {
+      padding-bottom: 96px;
+    }
+
     /* Dim inactive cards */
     .entry-card--dim {
       opacity: 0.5;
@@ -1482,9 +1504,8 @@
         <p class="detail-section-label" style="margin-top: var(--space-lg);">What to know</p>
         <p class="detail-body">English spoken. No special customs. Bring binoculars. Launch at 9:32 AM local time.</p>
 
-        <!-- Featured box — dashed orange border -->
-        <div class="featured-card featured-card--dashed" style="margin-top: var(--space-xl);">
-          <div class="featured-card__icon" aria-hidden="true">★</div>
+        <!-- Featured box — dashed orange border + faded bg image -->
+        <div class="featured-card featured-card--dashed featured-card--bg-image" style="margin-top: var(--space-xl);">
           <div>
             <p class="featured-card__eyebrow">Featured</p>
             <p class="featured-card__title">Guided VIP viewing experience</p>
@@ -1526,9 +1547,8 @@
           </div>
         </div>
 
-        <!-- Featured box — dashed orange border -->
-        <div class="featured-card featured-card--dashed" style="width: 100%; margin-top: var(--space-lg);">
-          <div class="featured-card__icon" aria-hidden="true">★</div>
+        <!-- Featured box — dashed orange border + faded bg image -->
+        <div class="featured-card featured-card--dashed featured-card--bg-image" style="width: 100%; margin-top: var(--space-lg);">
           <div>
             <p class="featured-card__eyebrow">Contextual Featured Content</p>
             <p class="featured-card__title">VIP guided viewing experience</p>
@@ -1622,9 +1642,8 @@
 
         </ul>
 
-        <!-- Featured box — dashed orange border -->
-        <div class="featured-card featured-card--dashed" style="margin-top: var(--space-xl);">
-          <div class="featured-card__icon" aria-hidden="true">★</div>
+        <!-- Featured box — dashed orange border + faded bg image -->
+        <div class="featured-card featured-card--dashed featured-card--bg-image" style="margin-top: var(--space-xl);">
           <div>
             <p class="featured-card__eyebrow">Recommended for this journey</p>
             <p class="featured-card__title">VIP guided viewing experience</p>
