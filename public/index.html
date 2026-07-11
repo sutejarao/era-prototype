@@ -1795,49 +1795,50 @@
     <section id="screen-green-ready" class="screen" data-screen="green-ready" aria-label="Ready">
       <div class="ready-content">
 
+        <!-- Checkmark icon — 56px -->
         <div class="ready-icon" aria-hidden="true">
           <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
             <path d="M6 15l6 6 12-12" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"/>
           </svg>
         </div>
 
+        <!-- 16px gap via ready-title margin-top -->
         <h2 class="ready-title">Ready to Go</h2>
-        <p class="ready-body">Your preparation is complete. Logistics are locked.</p>
 
-        <!-- Journey card with clothing + VIP rows -->
-        <div class="journey-card ready-card" style="border-top-color: var(--forest);">
+        <!-- 8px gap via ready-body margin-top -->
+        <p class="ready-body">All preparation complete. Your journey to the Moon Landing is confirmed.</p>
+
+        <!-- Journey card — forest border, light green tint -->
+        <div class="journey-card ready-card" style="margin-top: 24px; border-top-color: var(--forest); background: rgba(59, 91, 59, 0.05);">
           <div class="journey-card__body">
-            <p class="card-title" style="text-transform: uppercase;">The Moon Landing</p>
-            <p class="card-subtitle">July 20, 1969 &middot; Cape Canaveral, FL</p>
+            <p style="font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--teal); letter-spacing: 0.02em;">The Moon Landing</p>
+            <p style="font-family: var(--font-body); font-size: 12px; font-weight: 400; color: var(--grey-2); margin-top: 2px;">July 20, 1969 &middot; Cape Canaveral, FL</p>
             <div class="divider"></div>
-            <div class="journey-card__row">
-              <span class="text-label">Comfort Clothing</span>
-              <span class="text-label" style="color: var(--teal);">Summer casual</span>
-            </div>
-            <div class="journey-card__row" style="margin-top: var(--space-sm); border-top: 1px solid var(--cream-dark); padding-top: var(--space-sm);">
-              <span class="text-label" style="color: var(--orange);">VIP</span>
-              <span class="text-label" style="color: var(--orange);">Mission Control Access</span>
-            </div>
+            <p style="font-family: var(--font-body); font-size: 12px; color: var(--grey-1); line-height: 1.5; display: flex; gap: 8px;">&#128085; <span>Light cotton &middot; Sun hat &middot; Walking shoes</span></p>
+            <p style="font-family: var(--font-body); font-size: 12px; color: var(--grey-1); line-height: 1.5; display: flex; gap: 8px; margin-top: 6px;">&#9733; <span>VIP guided viewing included</span></p>
           </div>
         </div>
 
-        <!-- Departure logistics -->
-        <div class="logistics-section" style="width: 100%; margin-top: var(--space-lg);">
-          <span class="logistics-section__label">Departure</span>
-          <p class="logistics-section__line">KSC Launch Complex 39A</p>
-          <p class="logistics-section__line">Merritt Island, FL 32953</p>
-          <p class="logistics-section__line">July 16, 1969 &middot; 08:32 AM EST</p>
+        <!-- Departure + Return outline card -->
+        <div style="width: 100%; margin-top: 20px; border: 1px solid var(--teal); background: var(--white); padding: var(--space-lg);">
+
+          <p style="font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--teal);">Your departure</p>
+
+          <p style="font-family: var(--font-body); font-size: 12px; color: var(--grey-1); line-height: 1.6; display: flex; gap: 8px; margin-top: 8px;">&#128205; <span>Chrono Bay &middot; 1 Space Commerce Way, Cape Canaveral, FL 32920</span></p>
+          <p style="font-family: var(--font-body); font-size: 12px; color: var(--grey-1); line-height: 1.5; display: flex; gap: 8px; margin-top: 6px;">&#128336; <span>18 Aug 2026 &middot; Arrive by 08:00 AM</span></p>
+          <p style="font-family: var(--font-body); font-size: 11px; color: var(--grey-2); line-height: 1.5; display: flex; gap: 8px; margin-top: 4px;">&rarr; <span>Departs 09:00 AM &middot; Arrives July 20, 1969, 07:00 AM local</span></p>
+
+          <div class="divider" style="margin: var(--space-md) 0;"></div>
+
+          <p style="font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--teal);">Your return</p>
+
+          <p style="font-family: var(--font-body); font-size: 12px; color: var(--grey-1); line-height: 1.5; display: flex; gap: 8px; margin-top: 8px;">&#128336; <span>July 20, 1969 &middot; 01:00 PM local</span></p>
+          <p style="font-family: var(--font-body); font-size: 11px; color: var(--grey-2); line-height: 1.5; display: flex; gap: 8px; margin-top: 4px;">&rarr; <span>Returns to Chrono Bay &middot; 18 Aug 2026, 03:00 PM</span></p>
+
         </div>
 
-        <!-- Return logistics -->
-        <div class="logistics-section" style="width: 100%;">
-          <span class="logistics-section__label">Return</span>
-          <p class="logistics-section__line">Depart: July 24, 1969</p>
-          <p class="logistics-section__line">Arrive: July 24, 1969</p>
-          <p class="logistics-section__line">Return Point: Cape Canaveral, FL</p>
-        </div>
-
-        <div class="ready-actions">
+        <!-- CTA -->
+        <div class="ready-actions" style="margin-top: 20px;">
           <button class="btn-outline btn-full" data-goto="explore-entry">Back to My Trips</button>
         </div>
 
