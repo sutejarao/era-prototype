@@ -31,6 +31,7 @@
 
     // ── Flow 2 — Surprise Me / Quiz ─────────────────────────────
     { id: 'quiz-q1',                    title: 'Surprise Me',         noNav: false, noBack: false },
+    { id: 'quiz-q2',                    title: 'Surprise Me',         noNav: false, noBack: false },
 
     // ── Flow C — Surprise Me (legacy) ───────────────────────────
     { id: 'surprise-intent-1',          title: 'Tell Us More',        noNav: false, noBack: false },

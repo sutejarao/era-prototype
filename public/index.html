@@ -1342,6 +1342,83 @@
     </section>
 
     <!-- ══════════════════════════════════════════════════════════
+         SCREEN — Quiz Q2 (Flow 2: Surprise Me)
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="screen-quiz-q2" class="screen" data-screen="quiz-q2" aria-label="Surprise Me — Question 2">
+      <div class="quiz-content">
+
+        <!-- Progress -->
+        <div class="progress-wrap" style="margin-top: var(--space-lg);">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-sm);">
+            <span style="font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey-3);">Question 2 of 3</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width: 66%;"></div>
+          </div>
+        </div>
+
+        <!-- Question -->
+        <p class="quiz-question" style="margin-top: 16px;">Any era in mind?</p>
+
+        <!-- Options -->
+        <div style="margin-top: 16px; display: flex; flex-direction: column;">
+
+          <div class="option-card" role="button" tabindex="0"
+               data-answer="q2" data-value="ancient"
+               aria-label="Ancient — Before 500 CE">
+            <span class="option-card__emoji" aria-hidden="true">🏺</span>
+            <div class="option-card__text">
+              <span class="option-card__title">Ancient</span>
+              <span class="option-card__sub">Before 500 CE</span>
+            </div>
+          </div>
+
+          <div class="option-card" role="button" tabindex="0"
+               data-answer="q2" data-value="medieval"
+               aria-label="Medieval — 500 to 1500">
+            <span class="option-card__emoji" aria-hidden="true">🏰</span>
+            <div class="option-card__text">
+              <span class="option-card__title">Medieval</span>
+              <span class="option-card__sub">500 – 1500</span>
+            </div>
+          </div>
+
+          <div class="option-card" role="button" tabindex="0"
+               data-answer="q2" data-value="modern"
+               aria-label="Modern — 1500 to 1950">
+            <span class="option-card__emoji" aria-hidden="true">🎩</span>
+            <div class="option-card__text">
+              <span class="option-card__title">Modern</span>
+              <span class="option-card__sub">1500 – 1950</span>
+            </div>
+          </div>
+
+          <div class="option-card" role="button" tabindex="0"
+               data-answer="q2" data-value="any-era"
+               aria-label="Any era — Surprise me across all time periods">
+            <span class="option-card__emoji" aria-hidden="true">🌐</span>
+            <div class="option-card__text">
+              <span class="option-card__title">Any era</span>
+              <span class="option-card__sub">Surprise me across all time periods</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Next button — disabled until selection -->
+        <div style="margin-top: 20px;">
+          <button
+            class="btn-primary btn-full quiz-next"
+            data-goto="quiz-q3"
+            disabled
+            style="opacity: 0.4; pointer-events: none;"
+          >Next</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
          SCREEN 3 — Precision Search
     ═══════════════════════════════════════════════════════════ -->
     <section id="screen-precision-search" class="screen" data-screen="precision-search" aria-label="Precision Search">
