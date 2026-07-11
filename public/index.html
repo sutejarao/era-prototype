@@ -123,9 +123,16 @@
     .result-card {
       position: relative;
       margin-top: 12px;
+      min-height: 180px;
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
       transition: background 0.12s ease, transform 0.12s ease;
+    }
+
+    .result-card__header {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 6px;
     }
 
     .result-card:active {
@@ -1406,11 +1413,11 @@
           <div class="result-card__image">
             <img src="/assets/img/moon-landing.png" alt="Apollo 11 launch, Cape Canaveral" />
           </div>
-          <div class="result-card__badge">
-            <span class="risk-badge green">Safe</span>
-          </div>
           <div class="result-card__body">
-            <p class="card-title">The Moon Landing</p>
+            <div class="result-card__header">
+              <span class="risk-badge green">Safe</span>
+            </div>
+            <h3 class="card-title">The Moon Landing</h3>
             <p class="card-subtitle">July 20, 1969 &middot; Apollo 11 launch</p>
             <p class="card-body">Witness Apollo 11 lift off toward the Moon from public viewing areas at KSC.</p>
           </div>
@@ -1421,11 +1428,11 @@
           <div class="result-card__image">
             <img src="/assets/img/mercury.png" alt="Mercury-Atlas 6 launch" />
           </div>
-          <div class="result-card__badge">
-            <span class="risk-badge green">Safe</span>
-          </div>
           <div class="result-card__body">
-            <p class="card-title">Mercury-Atlas 6</p>
+            <div class="result-card__header">
+              <span class="risk-badge green">Safe</span>
+            </div>
+            <h3 class="card-title">Mercury-Atlas 6</h3>
             <p class="card-subtitle">Feb 20, 1962 &middot; John Glenn orbits Earth</p>
             <p class="card-body">First American to orbit Earth. Public viewing at Cape Canaveral.</p>
           </div>
@@ -1436,11 +1443,11 @@
           <div class="result-card__image">
             <img src="/assets/img/apollo-1.png" alt="Apollo 1 launch pad, Cape Canaveral" />
           </div>
-          <div class="result-card__badge">
-            <span class="risk-badge red">Blocked</span>
-          </div>
           <div class="result-card__body">
-            <p class="card-title">Apollo 1 Fire</p>
+            <div class="result-card__header">
+              <span class="risk-badge red">Blocked</span>
+            </div>
+            <h3 class="card-title">Apollo 1 Fire</h3>
             <p class="card-subtitle">Jan 27, 1967 &middot; Cape Canaveral, FL</p>
             <p class="card-body">Cabin fire during a launch rehearsal. Access restricted — high hazard.</p>
           </div>
