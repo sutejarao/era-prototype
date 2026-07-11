@@ -314,6 +314,17 @@
       if (panel) panel.classList.remove('hidden');
     });
 
+    // Demo mode toggle
+    let demoActive = false;
+    const demoToggle = document.getElementById('demo-toggle');
+    if (demoToggle) {
+      demoToggle.addEventListener('click', () => {
+        demoActive = !demoActive;
+        document.body.classList.toggle('demo-mode', demoActive);
+        demoToggle.setAttribute('aria-pressed', String(demoActive));
+      });
+    }
+
     // Checklist toggle — delegated on document
     document.addEventListener('click', (e) => {
       const item = e.target.closest('.check-item[data-check]');

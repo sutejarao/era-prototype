@@ -8,7 +8,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Oswald:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/atlas.css" />
   <style>
@@ -981,6 +981,39 @@
     .entry-card--active .ecard-arrow {
       opacity: 1;
     }
+
+    /* ── Demo mode annotation system ──────────────────────────── */
+    .demo-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      color: var(--white);
+      opacity: 0.6;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: opacity 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .demo-toggle svg, .demo-toggle svg * { pointer-events: none; }
+    .demo-toggle:active { opacity: 0.4; }
+    body.demo-mode .demo-toggle { opacity: 1; }
+
+    .demo-cue {
+      display: none;
+      font-family: 'Caveat', cursive;
+      font-size: 18px;
+      line-height: 1.3;
+      color: #3B6FE8;
+      pointer-events: none;
+      user-select: none;
+      position: absolute;
+      z-index: 300;
+    }
+    body.demo-mode .demo-cue { display: block; }
   </style>
 </head>
 <body>
@@ -1020,8 +1053,13 @@
         </svg>
       </button>
       <span id="nav-title" class="proto-nav__title"></span>
-      <!-- Right slot — empty for now, reserved for icons -->
-      <span class="proto-nav__right" aria-hidden="true"></span>
+      <!-- Right slot — demo annotation toggle -->
+      <button id="demo-toggle" class="demo-toggle" type="button" aria-label="Toggle demo annotations" aria-pressed="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 20h9"/>
+          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+        </svg>
+      </button>
     </nav>
 
     <!-- ══════════════════════════════════════════════════════════
@@ -1091,7 +1129,18 @@
           <p class="explore-header__sub">Choose how you'd like to explore</p>
         </header>
 
-        <div class="entry-card-stack">
+        <div class="entry-card-stack" style="position: relative;">
+
+          <!-- Demo cue — Flow A annotation (visible in demo-mode only) -->
+          <div class="demo-cue" style="top: 14px; right: 10px; transform: rotate(-2deg); text-align: right; max-width: 170px;">
+            <span style="display: block;">Flow A — Green Journey<br>— Moon Landing</span>
+            <svg width="52" height="28" viewBox="0 0 52 28" fill="none" style="display: block; margin-top: 2px; margin-left: auto;">
+              <!-- Curved arrow from right toward the card's left-center -->
+              <path d="M46 6 C 38 4, 18 18, 6 20" stroke="#3B6FE8" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+              <!-- Arrowhead -->
+              <path d="M6 20 L 14 14 M 6 20 L 12 26" stroke="#3B6FE8" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
 
           <!-- Card 1 — Start from Here → Flow B -->
           <div
