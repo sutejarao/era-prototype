@@ -908,7 +908,7 @@
     .featured-card--bg-image {
       background-image:
         linear-gradient(rgba(243, 233, 210, 0.88), rgba(243, 233, 210, 0.88)),
-        url('assets/img/moon-landing.png');
+        url('/assets/img/moon-landing.png');
       background-size: auto, cover;
       background-position: center, center;
       background-repeat: no-repeat, no-repeat;
@@ -1029,8 +1029,9 @@
     ═══════════════════════════════════════════════════════════ -->
     <section id="screen-sign-in" class="screen active" data-screen="sign-in" aria-label="Sign in">
 
-      <!-- Top 40%: wordmark + tagline -->
-      <div class="signin-hero">
+      <!-- Top 40%: illustration + wordmark + tagline -->
+      <div class="signin-hero" style="padding: var(--space-lg) var(--space-2xl) var(--space-sm); gap: var(--space-xs);">
+        <img src="/assets/img/era.png" alt="Era — time travel illustration" style="height: 150px; width: auto; object-fit: contain; flex-shrink: 0;" />
         <h1 class="signin-wordmark">Era</h1>
         <p class="signin-subtitle">Plan your journey through time</p>
       </div>
@@ -1348,7 +1349,7 @@
         <!-- Card 1: Moon Landing (active → green-detail) -->
         <div class="result-card" role="button" tabindex="0" aria-label="The Moon Landing, July 1969 — view details" data-goto="green-detail" style="margin-top: 12px;">
           <div class="result-card__image">
-            <img src="assets/img/moon-landing.png" alt="Apollo 11 launch, Cape Canaveral" />
+            <img src="/assets/img/moon-landing.png" alt="Apollo 11 launch, Cape Canaveral" />
             <span class="result-card__badge"><span class="risk-badge green">Safe</span></span>
           </div>
           <div class="result-card__body">
@@ -1361,7 +1362,7 @@
         <!-- Card 2: Mercury-Atlas 6 (decorative) -->
         <div class="result-card" style="margin-top: 12px; opacity: 0.5; pointer-events: none;" aria-hidden="true">
           <div class="result-card__image">
-            <img src="assets/img/mercury.png" alt="Mercury-Atlas 6 launch" />
+            <img src="/assets/img/mercury.png" alt="Mercury-Atlas 6 launch" />
             <span class="result-card__badge"><span class="risk-badge green">Safe</span></span>
           </div>
           <div class="result-card__body">
@@ -1374,7 +1375,7 @@
         <!-- Card 3: Apollo 1 Fire (decorative) -->
         <div class="result-card" style="margin-top: 12px; opacity: 0.5; pointer-events: none;" aria-hidden="true">
           <div class="result-card__image">
-            <img src="assets/img/apollo-1.png" alt="Apollo 1 launch pad, Cape Canaveral" />
+            <img src="/assets/img/apollo-1.png" alt="Apollo 1 launch pad, Cape Canaveral" />
             <span class="result-card__badge"><span class="risk-badge red">Blocked</span></span>
           </div>
           <div class="result-card__body">
