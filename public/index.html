@@ -1,1 +1,1907 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Era</title></head><body><h1 style="font-family:sans-serif;text-align:center;margin-top:40vh;">Era</h1></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Era — Time Travel Planning</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/atlas.css" />
+  <style>
+    /* ── Sign-in screen ─────────────────────────────────────── */
+    #screen-sign-in {
+      background: var(--cream);
+    }
+
+    .signin-hero {
+      height: 40%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      background: var(--cream);
+      padding: var(--space-2xl) var(--space-2xl) var(--space-lg);
+    }
+
+    .signin-wordmark {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      line-height: 1;
+    }
+
+    .signin-subtitle {
+      font-family: var(--font-body);
+      font-size: var(--text-body);
+      font-weight: 400;
+      color: var(--grey-2);
+      text-align: center;
+    }
+
+    .signin-body {
+      height: 60%;
+      background: var(--white);
+      border-top: var(--border-width-heavy) solid var(--border-strong);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--space-3xl) var(--space-2xl);
+      gap: var(--space-xl);
+    }
+
+    .signin-fields {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .signin-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+
+    .signin-link {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--teal);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: var(--space-xs) 0;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+    }
+
+    .signin-guest {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--grey-3);
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: var(--space-xs) 0;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+    }
+    /* ── Results screens (shared: explore-results + pompeii-results) ── */
+    .results-content {
+      padding: 52px var(--space-2xl) var(--space-2xl);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .results-eyebrow {
+      font-family: var(--font-body);
+      font-size: var(--text-caption);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--grey-3);
+      padding-top: var(--space-2xl);
+    }
+
+    /* result-card is defined in atlas.css; these extend it for screens */
+    .result-card {
+      margin-top: 12px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.12s ease, transform 0.12s ease;
+    }
+
+    .result-card:active {
+      transform: scale(0.985);
+      background: var(--cream-dark);
+    }
+
+    .result-card__image {
+      position: relative;
+      height: 140px;
+      background: var(--cream-dark);
+      border-bottom: var(--border-width) solid var(--border-strong);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-lg);
+    }
+
+    .result-card__image-caption {
+      font-family: var(--font-body);
+      font-size: var(--text-caption);
+      font-weight: 400;
+      color: var(--grey-3);
+      text-align: center;
+      line-height: 1.4;
+      max-width: 200px;
+    }
+
+    .result-card__badge {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+    }
+
+    .result-card__body {
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: var(--text-section);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--black);
+      line-height: 1.2;
+    }
+
+    .card-subtitle {
+      font-family: var(--font-body);
+      font-size: var(--text-caption);
+      font-weight: 400;
+      color: var(--grey-2);
+      letter-spacing: 0.02em;
+      margin-top: 2px;
+    }
+
+    .card-body {
+      font-family: var(--font-body);
+      font-size: var(--text-body);
+      font-weight: 400;
+      color: var(--grey-1);
+      line-height: 1.6;
+      margin-top: var(--space-xs);
+    }
+
+    .results-caption {
+      margin-top: var(--space-lg);
+      font-family: var(--font-body);
+      font-size: var(--text-caption);
+      font-weight: 400;
+      color: var(--grey-3);
+      line-height: 1.5;
+    }
+
+    /* ── Preparation screens (shared layout) ────────────────── */
+    .prep-content {
+      padding: 52px var(--space-2xl) var(--space-3xl);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .prep-section {
+      margin-top: var(--space-xl);
+    }
+
+    .check-item__hint {
+      font-family: var(--font-body);
+      font-size: var(--text-caption);
+      font-weight: 400;
+      color: var(--grey-3);
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+
+    /* ── Ready screens (shared) ─────────────────────────────── */
+    .ready-content {
+      padding: 52px var(--space-2xl) var(--space-3xl);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .ready-icon {
+      margin-top: var(--space-3xl);
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(59, 91, 59, 0.12);
+      border: 3px solid var(--forest);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--forest);
+      flex-shrink: 0;
+      animation: checkPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    .ready-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--teal);
+      text-align: center;
+      margin-top: var(--space-lg);
+    }
+
+    .ready-body {
+      font-family: var(--font-body);
+      font-size: var(--text-body);
+      font-weight: 400;
+      color: var(--grey-1);
+      text-align: center;
+      line-height: 1.6;
+      max-width: 280px;
+      margin-top: var(--space-sm);
+    }
+
+    .ready-card {
+      width: 100%;
+      margin-top: var(--space-2xl);
+    }
+
+    .ready-actions {
+      width: 100%;
+      margin-top: var(--space-xl);
+    }
+
+    /* ── Surprise Me — intent screens ───────────────────────── */
+    .intent-content {
+      padding: 52px var(--space-2xl) var(--space-3xl);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .intent-header {
+      padding-top: var(--space-2xl);
+    }
+
+    .intent-eyebrow {
+      font-family: var(--font-body);
+      font-size: var(--text-caption);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey-3);
+    }
+
+    .step-dots {
+      display: flex;
+      gap: var(--space-sm);
+      margin-top: var(--space-sm);
+    }
+
+    .step-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: transparent;
+      border: 2px solid var(--teal);
+      transition: background 0.2s ease;
+    }
+
+    .step-dot.filled {
+      background: var(--teal);
+    }
+
+    .intent-question {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--teal);
+      line-height: 1.2;
+      margin-top: var(--space-lg);
+    }
+
+    .option-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: var(--space-xl);
+    }
+
+    /* Option card — entry-card variant for single-row selections */
+    .option-card {
+      background: var(--cream);
+      border: var(--border-width) solid var(--border-strong);
+      border-left: var(--border-width-heavy) solid var(--teal);
+      padding: var(--space-lg);
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      cursor: pointer;
+      transition: transform 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+      min-height: 56px;
+    }
+
+    .option-card:active,
+    .option-card.selected {
+      transform: scale(0.98);
+      background: rgba(28, 92, 92, 0.08);
+      border-color: var(--teal);
+    }
+
+    .option-card__icon {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--teal);
+    }
+
+    .option-card__label {
+      font-family: var(--font-display);
+      font-size: var(--text-section);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--black);
+      flex: 1;
+    }
+
+    /* ── Green current-location screen ─────────────────────── */
+    .location-card {
+      background: var(--cream);
+      border: var(--border-width) solid var(--teal);
+      border-left: var(--border-width-heavy) solid var(--teal);
+      padding: var(--space-lg);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+
+    .location-card__icon {
+      flex-shrink: 0;
+      color: var(--teal);
+      margin-top: 2px;
+    }
+
+    .location-card__name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 1.2;
+    }
+
+    .location-card__meta {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--grey-2);
+      margin-top: 4px;
+    }
+
+    /* ── Red-blocked screen ─────────────────────────────────── */
+    #screen-red-blocked {
+      background: var(--cream);
+    }
+
+    .blocked-content {
+      padding: 52px var(--space-2xl) var(--space-3xl);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .blocked-eyebrow {
+      padding-top: var(--space-2xl);
+      font-family: var(--font-body);
+      font-size: var(--text-caption);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rust);
+    }
+
+    .blocked-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--teal);
+      line-height: 1.1;
+      margin-top: var(--space-sm);
+    }
+
+    .blocked-dataline {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--grey-2);
+      margin-top: var(--space-xs);
+    }
+
+    /* Red variant of .risk-box */
+    .risk-box--red {
+      border-left-color: var(--rust);
+    }
+
+    .risk-box--red .risk-box__title {
+      color: var(--rust);
+    }
+
+    .risk-box--green {
+      border-left-color: var(--forest);
+    }
+
+    .risk-box--green .risk-box__title {
+      color: var(--forest);
+    }
+
+    .preserved-intent {
+      margin-top: var(--space-lg);
+    }
+
+    .preserved-intent__label {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+      padding-bottom: var(--space-xs);
+      border-bottom: 2px solid var(--teal);
+      display: block;
+    }
+
+    .preserved-intent__body {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--grey-1);
+      line-height: 1.6;
+      margin-top: var(--space-md);
+    }
+
+    .blocked-actions {
+      margin-top: var(--space-xl);
+    }
+
+    /* ── Precision Search screen ────────────────────────────── */
+    #screen-precision-search {
+      background: var(--cream);
+    }
+
+    .ps-content {
+      padding: 52px var(--space-2xl) var(--space-2xl);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .ps-header {
+      padding: var(--space-2xl) 0 var(--space-lg);
+    }
+
+    .ps-header__title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--teal);
+      line-height: 1.2;
+    }
+
+    .ps-header__sub {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--grey-2);
+      margin-top: var(--space-xs);
+    }
+
+    .scenario-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: var(--space-lg);
+    }
+
+    .scenario-card {
+      background: var(--cream);
+      border: var(--border-width) solid var(--teal);
+      border-left: var(--border-width-heavy) solid var(--teal);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      cursor: pointer;
+      transition: transform 0.12s ease, background 0.12s ease;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .scenario-card:active {
+      transform: scale(0.98);
+      background: var(--cream-dark);
+    }
+
+    .scenario-card__top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .scenario-card__title {
+      font-family: var(--font-display);
+      font-size: var(--text-section);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--black);
+      line-height: 1.2;
+      flex: 1;
+    }
+
+    .scenario-card__data {
+      font-family: var(--font-body);
+      font-size: var(--text-body);
+      font-weight: 400;
+      color: var(--grey-1);
+      line-height: 1.4;
+    }
+
+    .ps-caption {
+      margin-top: var(--space-2xl);
+      font-family: var(--font-body);
+      font-size: var(--text-caption);
+      font-weight: 400;
+      color: var(--grey-3);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* ── Explore Entry screen ───────────────────────────────── */
+    #screen-explore-entry {
+      background: var(--cream);
+    }
+
+    .explore-content {
+      padding: 52px var(--space-2xl) var(--space-2xl);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .explore-header {
+      padding: var(--space-2xl) 0 var(--space-lg);
+    }
+
+    .explore-header__title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--teal);
+      line-height: 1.2;
+    }
+
+    .explore-header__sub {
+      font-family: var(--font-body);
+      font-size: var(--text-body);
+      font-weight: 400;
+      color: var(--grey-2);
+      margin-top: var(--space-xs);
+    }
+
+    .entry-card-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: var(--space-lg);
+    }
+
+    /* Entry card interactive override for the tappable card */
+    .entry-card--active {
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+    .entry-card--active:active {
+      background: var(--cream-dark);
+    }
+
+    /* Dim inactive cards */
+    .entry-card--dim {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    /* Icon + title row inside card header */
+    .ecard-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(28, 92, 92, 0.1);
+      border: var(--border-width) solid var(--border-strong);
+      color: var(--teal);
+    }
+
+    .ecard-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex: 1;
+    }
+
+    .ecard-title {
+      font-family: var(--font-display);
+      font-size: var(--text-section);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--black);
+      line-height: 1.2;
+    }
+
+    .ecard-desc {
+      font-family: var(--font-body);
+      font-size: var(--text-body);
+      font-weight: 400;
+      color: var(--grey-1);
+      line-height: 1.5;
+    }
+
+    .ecard-arrow {
+      flex-shrink: 0;
+      color: var(--teal);
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .entry-card--active .ecard-arrow {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="app">
+
+    <!-- ── Shared Nav Bar (hidden on sign-in by app.js) ──────── -->
+    <nav id="nav-bar" class="proto-nav" hidden aria-hidden="true">
+      <button id="nav-back" class="proto-nav__back" aria-label="Go back" hidden>
+        <!-- Left chevron -->
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"/>
+        </svg>
+      </button>
+      <span id="nav-title" class="proto-nav__title"></span>
+      <!-- Right slot — empty for now, reserved for icons -->
+      <span class="proto-nav__right" aria-hidden="true"></span>
+    </nav>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SCREEN 1 — Sign In
+         Full screen, no nav bar, no status bar.
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="screen-sign-in" class="screen active" data-screen="sign-in" aria-label="Sign in">
+
+      <!-- Top 40%: wordmark + tagline -->
+      <div class="signin-hero">
+        <h1 class="signin-wordmark">Era</h1>
+        <p class="signin-subtitle">Plan your journey through time</p>
+      </div>
+
+      <!-- Bottom 60%: form -->
+      <div class="signin-body">
+
+        <div class="signin-fields">
+          <div class="input-group">
+            <label class="input-label" for="signin-email">Email</label>
+            <input
+              id="signin-email"
+              class="input-field"
+              type="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              inputmode="email"
+            />
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="signin-password">Password</label>
+            <input
+              id="signin-password"
+              class="input-field"
+              type="password"
+              placeholder="••••••••"
+              autocomplete="current-password"
+            />
+          </div>
+        </div>
+
+        <div class="signin-actions">
+          <button class="btn-primary btn-full" data-goto="explore-entry">
+            Sign In
+          </button>
+          <button class="signin-link" data-goto="explore-entry" aria-label="Create a new account">
+            Create account
+          </button>
+          <button class="signin-guest" data-goto="explore-entry" aria-label="Continue without signing in">
+            Continue as guest
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SCREEN 2 — Explore Entry
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="screen-explore-entry" class="screen" data-screen="explore-entry" aria-label="Explore">
+      <div class="explore-content">
+
+        <header class="explore-header">
+          <h2 class="explore-header__title">Where do you want<br>to start?</h2>
+          <p class="explore-header__sub">Choose how you'd like to explore</p>
+        </header>
+
+        <div class="entry-card-stack">
+
+          <!-- Card 1 — Start from Here → Flow B -->
+          <div
+            class="entry-card entry-card--active"
+            role="button"
+            tabindex="0"
+            aria-label="Start from Here — explore your current location across time"
+            data-goto="green-current-location"
+          >
+            <div class="entry-card__header">
+              <div class="ecard-icon" aria-hidden="true">
+                <!-- MapPin -->
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                  <circle cx="12" cy="9" r="2.5"/>
+                </svg>
+              </div>
+              <div class="ecard-heading">
+                <span class="ecard-title">Start from Here</span>
+              </div>
+              <div class="ecard-arrow" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                  <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"/>
+                </svg>
+              </div>
+            </div>
+            <div class="entry-card__body">
+              <p class="ecard-desc">Discover what happened at your current location across time.</p>
+            </div>
+          </div>
+
+          <!-- Card 2 — Surprise Me → Flow C -->
+          <div
+            class="entry-card entry-card--active"
+            role="button"
+            tabindex="0"
+            aria-label="Surprise Me — answer a few questions and we'll find something you'll love"
+            data-goto="surprise-intent-1"
+          >
+            <div class="entry-card__header">
+              <div class="ecard-icon" aria-hidden="true">
+                <!-- Globe -->
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+              </div>
+              <div class="ecard-heading">
+                <span class="ecard-title">Surprise Me</span>
+              </div>
+              <div class="ecard-arrow" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                  <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"/>
+                </svg>
+              </div>
+            </div>
+            <div class="entry-card__body">
+              <p class="ecard-desc">Answer a few questions. We'll find something you'll love.</p>
+            </div>
+          </div>
+
+          <!-- Card 3 — Precision Search → Flow A -->
+          <div
+            class="entry-card entry-card--active"
+            role="button"
+            tabindex="0"
+            aria-label="Precision Search — search by place, date, or event"
+            data-goto="precision-search"
+          >
+            <div class="entry-card__header">
+              <div class="ecard-icon" aria-hidden="true">
+                <!-- Search -->
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
+                  <circle cx="11" cy="11" r="8"/>
+                  <path d="M21 21l-4.35-4.35"/>
+                </svg>
+              </div>
+              <div class="ecard-heading">
+                <span class="ecard-title">Precision Search</span>
+              </div>
+              <div class="ecard-arrow" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                  <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"/>
+                </svg>
+              </div>
+            </div>
+            <div class="entry-card__body">
+              <p class="ecard-desc">Already know what you're looking for? Search by place, date, or event.</p>
+            </div>
+          </div>
+
+        </div><!-- /.entry-card-stack -->
+      </div><!-- /.explore-content -->
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SCREEN 3 — Precision Search
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="screen-precision-search" class="screen" data-screen="precision-search" aria-label="Precision Search">
+      <div class="ps-content">
+
+        <header class="ps-header">
+          <h2 class="ps-header__title">Choose a Search Scenario</h2>
+          <p class="ps-header__sub">Two prepared searches for this demo</p>
+        </header>
+
+        <div class="scenario-stack">
+
+          <!-- Scenario 1 — Amber: Great Fire of London -->
+          <div
+            class="scenario-card"
+            role="button"
+            tabindex="0"
+            aria-label="Great Fire of London — amber risk scenario"
+            data-goto="explore-results"
+          >
+            <div class="scenario-card__top">
+              <span class="scenario-card__title">The Great Fire of London</span>
+              <span class="risk-badge amber">Caution</span>
+            </div>
+            <p class="scenario-card__data">Sept 2, 1666 &middot; Pudding Lane, London</p>
+          </div>
+
+          <!-- Scenario 2 — Red: Pompeii -->
+          <div
+            class="scenario-card"
+            role="button"
+            tabindex="0"
+            aria-label="Pompeii Eruption of Vesuvius — blocked risk scenario"
+            data-goto="pompeii-results"
+          >
+            <div class="scenario-card__top">
+              <span class="scenario-card__title">Pompeii &mdash; Eruption of Vesuvius</span>
+              <span class="risk-badge red">Blocked</span>
+            </div>
+            <p class="scenario-card__data">Aug 24, 79 AD &middot; Pompeii, Roman Empire</p>
+          </div>
+
+        </div><!-- /.scenario-stack -->
+
+        <p class="ps-caption">This is a demo &mdash; search results are pre-set<br>for two historical scenarios</p>
+
+      </div><!-- /.ps-content -->
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SCREEN 4 — Explore Results
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="screen-explore-results" class="screen" data-screen="explore-results" aria-label="Results">
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SCREEN 5 — Amber Risk
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="screen-amber-risk" class="screen" data-screen="amber-risk" aria-label="Risk Assessment">
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SCREEN 6 — Journey Updated
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="screen-journey-updated" class="screen" data-screen="journey-updated" aria-label="Your Journey">
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SCREEN 7 — Preparation
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="screen-preparation" class="screen" data-screen="preparation" aria-label="Preparation">
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SCREEN 8 — Ready (Flow A)
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="screen-ready" class="screen" data-screen="ready" aria-label="Ready">
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         FLOW B — Start from Here / Green (Moon Landing)
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="screen-green-current-location" class="screen" data-screen="green-current-location" aria-label="Your Location">
+      <div class="results-content">
+
+        <p class="results-eyebrow" style="padding-top: var(--space-2xl);">Your Current Location</p>
+
+        <div class="location-card">
+          <div class="location-card__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+              <circle cx="12" cy="9" r="2.5"/>
+            </svg>
+          </div>
+          <div>
+            <p class="location-card__name">Cape Canaveral, Florida</p>
+            <p class="location-card__meta">Detected via device location</p>
+          </div>
+        </div>
+
+        <div style="margin-top: var(--space-xl);">
+          <p class="section-header__title">What Happened Here?</p>
+          <p class="explore-header__sub" style="margin-top: var(--space-xs);">Significant moments across time at this location</p>
+        </div>
+
+        <div style="margin-top: var(--space-lg);">
+          <button class="btn-primary btn-full" data-goto="green-results">See Events</button>
+        </div>
+
+      </div>
+    </section>
+    <section id="screen-green-results" class="screen" data-screen="green-results" aria-label="Nearby Eras">
+      <div class="results-content">
+
+        <p class="results-eyebrow">3 events found near you</p>
+
+        <!-- Card 1 — Moon Landing (active) -->
+        <div
+          class="result-card"
+          role="button"
+          tabindex="0"
+          aria-label="The Moon Landing, July 1969 — view details"
+          data-goto="green-detail"
+          style="margin-top: 12px;"
+        >
+          <div class="result-card__image">
+            <p class="result-card__image-caption">Apollo 11 launch, Kennedy Space Center, 1969</p>
+            <div class="result-card__badge">
+              <span class="risk-badge green">Safe</span>
+            </div>
+          </div>
+          <div class="result-card__body">
+            <h3 class="card-title">The Moon Landing</h3>
+            <p class="card-subtitle">July 20, 1969 &middot; Cape Canaveral, FL</p>
+            <p class="card-body">Apollo 11 launches from Kennedy Space Center, carrying the first humans to walk on the Moon.</p>
+          </div>
+        </div>
+
+        <!-- Card 2 — Space Shuttle (decorative) -->
+        <div
+          class="result-card"
+          aria-hidden="true"
+          style="margin-top: 12px; opacity: 0.5; pointer-events: none;"
+        >
+          <div class="result-card__image">
+            <p class="result-card__image-caption">Space Shuttle Columbia on launchpad, 1981</p>
+            <div class="result-card__badge">
+              <span class="risk-badge green">Safe</span>
+            </div>
+          </div>
+          <div class="result-card__body">
+            <h3 class="card-title">Space Shuttle Program Launch</h3>
+            <p class="card-subtitle">April 12, 1981 &middot; Cape Canaveral, FL</p>
+            <p class="card-body">The first flight of NASA's Space Shuttle program begins.</p>
+          </div>
+        </div>
+
+        <!-- Card 3 — Air Force Station (decorative) -->
+        <div
+          class="result-card"
+          aria-hidden="true"
+          style="margin-top: 12px; opacity: 0.5; pointer-events: none;"
+        >
+          <div class="result-card__image">
+            <p class="result-card__image-caption">Cape Canaveral Air Force Station, 1949</p>
+            <div class="result-card__badge">
+              <span class="risk-badge green">Safe</span>
+            </div>
+          </div>
+          <div class="result-card__body">
+            <h3 class="card-title">Founding of Cape Canaveral Air Force Station</h3>
+            <p class="card-subtitle">1949 &middot; Cape Canaveral, FL</p>
+            <p class="card-body">The site is established as America's primary rocket launch facility.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <section id="screen-green-detail" class="screen" data-screen="green-detail" aria-label="Era Detail">
+      <div class="blocked-content">
+
+        <span class="risk-badge green" style="margin-top: var(--space-2xl); align-self: flex-start;">Safe</span>
+
+        <h2 class="blocked-title" style="margin-top: var(--space-md);">The Moon Landing</h2>
+        <p class="blocked-dataline">July 20, 1969 &middot; Cape Canaveral, FL</p>
+
+        <p class="card-body" style="margin-top: var(--space-lg);">Apollo 11 launches carrying Neil Armstrong, Buzz Aldrin, and Michael Collins. This is one of the most historically significant and safest destinations in the network &mdash; heavily documented, publicly accessible, and zero environmental hazard.</p>
+
+        <div class="risk-box risk-box--green" style="margin-top: var(--space-lg);">
+          <p class="risk-box__title">Why Is This Safe?</p>
+          <p class="risk-box__body">Public viewing areas, well-documented conditions, no environmental or civil hazards recorded at this time and place.</p>
+        </div>
+
+        <div style="margin-top: var(--space-2xl);">
+          <button class="btn-primary btn-full" data-goto="green-journey-confirmed">Confirm Journey</button>
+        </div>
+
+      </div>
+    </section>
+    <section id="screen-green-journey-confirmed" class="screen" data-screen="green-journey-confirmed" aria-label="Journey Confirmed">
+      <div class="blocked-content">
+
+        <span class="risk-badge green" style="margin-top: var(--space-2xl); align-self: flex-start;">Safe</span>
+
+        <h2 class="explore-header__title" style="margin-top: 12px;">Journey Confirmed</h2>
+        <p class="card-body" style="margin-top: var(--space-sm);">No mitigation needed &mdash; this destination is safe as-is. Your preparation checklist is ready.</p>
+
+        <!-- Journey summary card -->
+        <div class="journey-card" style="margin-top: var(--space-xl); border-top-color: var(--forest);">
+          <div class="journey-card__body">
+            <p style="font-family: var(--font-body); font-size: var(--text-caption); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--forest);">Confirmed Journey</p>
+            <p class="card-title" style="margin-top: var(--space-xs); text-transform: uppercase;">The Moon Landing</p>
+            <p class="card-subtitle">July 20, 1969 &middot; Cape Canaveral, FL</p>
+            <div class="divider"></div>
+            <div class="journey-card__row">
+              <span class="text-label">Risk Level</span>
+              <span class="risk-badge green">Safe</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: var(--space-2xl);">
+          <button class="btn-primary btn-full" data-goto="green-preparation">Prepare for Journey</button>
+        </div>
+
+      </div>
+    </section>
+    <section id="screen-green-preparation" class="screen" data-screen="green-preparation" aria-label="Preparation">
+      <div class="prep-content">
+
+        <!-- Progress bar -->
+        <div class="progress-wrap" style="margin-top: var(--space-2xl);">
+          <div class="progress-wrap__labels">
+            <span class="text-label">Preparation</span>
+            <span class="text-caption" id="green-prep-count">0 of 5 complete</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill progress-fill--forest" id="green-prep-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Section 1: Safety & Access -->
+        <div class="prep-section">
+          <div class="section-header">
+            <span class="section-header__title">Safety &amp; Access</span>
+          </div>
+          <ul class="checklist" id="green-checklist" aria-label="Preparation checklist">
+
+            <li class="check-item" data-check>
+              <span class="check-box" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+              </span>
+              <div>
+                <span class="check-item__label">Confirm public viewing area pass</span>
+                <p class="check-item__hint">Required for close-range access to the launch site</p>
+              </div>
+            </li>
+
+            <li class="check-item" data-check>
+              <span class="check-box" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+              </span>
+              <div>
+                <span class="check-item__label">Sun protection &mdash; hat and sunscreen</span>
+                <p class="check-item__hint">Florida midday sun, minimal shade at viewing areas</p>
+              </div>
+            </li>
+
+            <li class="check-item" data-check>
+              <span class="check-box" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+              </span>
+              <div>
+                <span class="check-item__label">Charged camera / film</span>
+                <p class="check-item__hint">No modern digital devices draw attention &mdash; bring period-appropriate equipment</p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+        <!-- Section 2: What to Expect -->
+        <div class="prep-section">
+          <div class="section-header">
+            <span class="section-header__title">What to Expect</span>
+          </div>
+          <ul class="checklist">
+
+            <li class="check-item" data-check>
+              <span class="check-box" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+              </span>
+              <div>
+                <span class="check-item__label">Review launch day timeline</span>
+                <p class="check-item__hint">Liftoff sequence, timing, and crowd flow</p>
+              </div>
+            </li>
+
+            <li class="check-item" data-check>
+              <span class="check-box" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+              </span>
+              <div>
+                <span class="check-item__label">Download offline audio commentary</span>
+                <p class="check-item__hint">Live broadcast narration for context during the event</p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+        <!-- CTA -->
+        <div style="margin-top: var(--space-2xl);">
+          <button class="btn-primary btn-full" data-goto="green-ready">I'm Ready</button>
+        </div>
+
+      </div>
+    </section>
+    <section id="screen-green-ready" class="screen" data-screen="green-ready" aria-label="Ready">
+      <div class="ready-content">
+
+        <!-- Completion icon -->
+        <div class="ready-icon" aria-hidden="true">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+            <path d="M6 15l6 6 12-12" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"/>
+          </svg>
+        </div>
+
+        <h2 class="ready-title">You're Ready</h2>
+        <p class="ready-body">Your preparation is complete. This is where Era's scope ends &mdash; the physical journey begins with separate equipment.</p>
+
+        <!-- Journey summary -->
+        <div class="journey-card ready-card" style="border-top-color: var(--forest);">
+          <div class="journey-card__body">
+            <p class="card-title" style="text-transform: uppercase;">The Moon Landing</p>
+            <p class="card-subtitle">July 20, 1969 &middot; Cape Canaveral, FL</p>
+            <div class="divider"></div>
+            <div class="journey-card__row">
+              <span class="text-label">Status</span>
+              <span class="risk-badge green">Ready</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action -->
+        <div class="ready-actions">
+          <button class="btn-outline btn-full" data-goto="explore-entry">Back to My Trips</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         FLOW C — Surprise Me
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="screen-surprise-intent-1" class="screen" data-screen="surprise-intent-1" aria-label="Tell Us More">
+      <div class="intent-content">
+
+        <div class="intent-header">
+          <p class="intent-eyebrow">Question 1 of 2</p>
+          <div class="step-dots" aria-hidden="true">
+            <span class="step-dot filled"></span>
+            <span class="step-dot"></span>
+          </div>
+          <h2 class="intent-question">What pulls you<br>toward the past?</h2>
+        </div>
+
+        <div class="option-stack">
+
+          <!-- Epic Moments -->
+          <div class="option-card" role="button" tabindex="0" aria-label="Epic Moments" data-option data-goto="surprise-intent-2">
+            <div class="option-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+            <span class="option-card__label">Epic Moments</span>
+          </div>
+
+          <!-- Everyday Life -->
+          <div class="option-card" role="button" tabindex="0" aria-label="Everyday Life" data-option data-goto="surprise-intent-2">
+            <div class="option-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+                <line x1="6" y1="1" x2="6" y2="4"/>
+                <line x1="10" y1="1" x2="10" y2="4"/>
+                <line x1="14" y1="1" x2="14" y2="4"/>
+              </svg>
+            </div>
+            <span class="option-card__label">Everyday Life</span>
+          </div>
+
+          <!-- Mysteries -->
+          <div class="option-card" role="button" tabindex="0" aria-label="Mysteries" data-option data-goto="surprise-intent-2">
+            <div class="option-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+            </div>
+            <span class="option-card__label">Mysteries</span>
+          </div>
+
+          <!-- Turning Points -->
+          <div class="option-card" role="button" tabindex="0" aria-label="Turning Points" data-option data-goto="surprise-intent-2">
+            <div class="option-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                <polyline points="17 6 23 6 23 12"/>
+              </svg>
+            </div>
+            <span class="option-card__label">Turning Points</span>
+          </div>
+
+        </div><!-- /.option-stack -->
+      </div>
+    </section>
+    <section id="screen-surprise-intent-2" class="screen" data-screen="surprise-intent-2" aria-label="Almost There">
+      <div class="intent-content">
+
+        <div class="intent-header">
+          <p class="intent-eyebrow">Question 2 of 2</p>
+          <div class="step-dots" aria-hidden="true">
+            <span class="step-dot filled"></span>
+            <span class="step-dot filled"></span>
+          </div>
+          <h2 class="intent-question">How adventurous<br>do you want to be?</h2>
+        </div>
+
+        <div class="option-stack">
+
+          <!-- Play It Safe -->
+          <div class="option-card" role="button" tabindex="0" aria-label="Play It Safe" data-option data-goto="surprise-curated-results">
+            <div class="option-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <span class="option-card__label">Play It Safe</span>
+          </div>
+
+          <!-- A Little Thrill -->
+          <div class="option-card" role="button" tabindex="0" aria-label="A Little Thrill" data-option data-goto="surprise-curated-results">
+            <div class="option-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+            </div>
+            <span class="option-card__label">A Little Thrill</span>
+          </div>
+
+          <!-- Show Me Everything -->
+          <div class="option-card" role="button" tabindex="0" aria-label="Show Me Everything" data-option data-goto="surprise-curated-results">
+            <div class="option-card__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
+                <circle cx="12" cy="12" r="10"/>
+                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+              </svg>
+            </div>
+            <span class="option-card__label">Show Me Everything</span>
+          </div>
+
+        </div><!-- /.option-stack -->
+      </div>
+    </section>
+    <section id="screen-surprise-curated-results" class="screen" data-screen="surprise-curated-results" aria-label="Picked for You">
+      <div class="results-content">
+
+        <p class="results-eyebrow">Based on your answers</p>
+
+        <!-- Card 1 — Woodstock (active) -->
+        <div
+          class="result-card"
+          role="button"
+          tabindex="0"
+          aria-label="Woodstock Music Festival, August 1969 — view details"
+          data-goto="surprise-detail"
+          style="margin-top: 12px;"
+        >
+          <div class="result-card__image">
+            <p class="result-card__image-caption">Woodstock festival crowd, Bethel, New York, 1969</p>
+            <div class="result-card__badge">
+              <span class="risk-badge green">Safe</span>
+            </div>
+          </div>
+          <div class="result-card__body">
+            <h3 class="card-title">Woodstock Music Festival</h3>
+            <p class="card-subtitle">August 15, 1969 &middot; Bethel, New York</p>
+            <p class="card-body">Half a million people gather for three days of music and peace during a defining cultural turning point.</p>
+          </div>
+        </div>
+
+        <!-- Card 2 — Berlin Wall (decorative) -->
+        <div
+          class="result-card"
+          aria-hidden="true"
+          style="margin-top: 12px; opacity: 0.5; pointer-events: none;"
+        >
+          <div class="result-card__image">
+            <p class="result-card__image-caption">Crowds at the Berlin Wall, November 1989</p>
+            <div class="result-card__badge">
+              <span class="risk-badge green">Safe</span>
+            </div>
+          </div>
+          <div class="result-card__body">
+            <h3 class="card-title">Fall of the Berlin Wall</h3>
+            <p class="card-subtitle">November 9, 1989 &middot; Berlin, Germany</p>
+            <p class="card-body">Crowds gather as the wall dividing East and West Berlin comes down.</p>
+          </div>
+        </div>
+
+        <!-- Card 3 — Beatles (decorative) -->
+        <div
+          class="result-card"
+          aria-hidden="true"
+          style="margin-top: 12px; opacity: 0.5; pointer-events: none;"
+        >
+          <div class="result-card__image">
+            <p class="result-card__image-caption">The Cavern Club, Liverpool, 1961</p>
+            <div class="result-card__badge">
+              <span class="risk-badge green">Safe</span>
+            </div>
+          </div>
+          <div class="result-card__body">
+            <h3 class="card-title">First Beatles Concert at The Cavern</h3>
+            <p class="card-subtitle">February 21, 1961 &middot; Liverpool, England</p>
+            <p class="card-body">A small club show before the band became a global phenomenon.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <section id="screen-surprise-detail" class="screen" data-screen="surprise-detail" aria-label="Era Detail">
+      <div class="blocked-content">
+
+        <span class="risk-badge green" style="margin-top: var(--space-2xl); align-self: flex-start;">Safe</span>
+
+        <h2 class="blocked-title" style="margin-top: var(--space-md);">Woodstock Music Festival</h2>
+        <p class="blocked-dataline">August 15, 1969 &middot; Bethel, New York</p>
+
+        <p class="card-body" style="margin-top: var(--space-lg);">Max Yasgur's dairy farm hosts one of the most significant cultural gatherings in modern history &mdash; three days of music, community, and countercultural expression.</p>
+
+        <div class="risk-box risk-box--green" style="margin-top: var(--space-lg);">
+          <p class="risk-box__title">Why Is This Safe?</p>
+          <p class="risk-box__body">Large open-air public gathering, well-documented conditions, no environmental or civil hazards recorded at this time.</p>
+        </div>
+
+        <div style="margin-top: var(--space-2xl);">
+          <button class="btn-primary btn-full" data-goto="surprise-journey-confirmed">Confirm Journey</button>
+        </div>
+
+      </div>
+    </section>
+    <section id="screen-surprise-journey-confirmed" class="screen" data-screen="surprise-journey-confirmed" aria-label="Journey Confirmed">
+      <div class="blocked-content">
+
+        <span class="risk-badge green" style="margin-top: var(--space-2xl); align-self: flex-start;">Safe</span>
+
+        <h2 class="explore-header__title" style="margin-top: 12px;">Journey Confirmed</h2>
+        <p class="card-body" style="margin-top: var(--space-sm);">No mitigation needed &mdash; this destination is safe as-is. Your preparation checklist is ready.</p>
+
+        <div class="journey-card" style="margin-top: var(--space-xl); border-top-color: var(--forest);">
+          <div class="journey-card__body">
+            <p style="font-family: var(--font-body); font-size: var(--text-caption); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--forest);">Confirmed Journey</p>
+            <p class="card-title" style="margin-top: var(--space-xs); text-transform: uppercase;">Woodstock Music Festival</p>
+            <p class="card-subtitle">August 15, 1969 &middot; Bethel, New York</p>
+            <div class="divider"></div>
+            <div class="journey-card__row">
+              <span class="text-label">Risk Level</span>
+              <span class="risk-badge green">Safe</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: var(--space-2xl);">
+          <button class="btn-primary btn-full" data-goto="surprise-preparation">Prepare for Journey</button>
+        </div>
+
+      </div>
+    </section>
+    <section id="screen-surprise-preparation" class="screen" data-screen="surprise-preparation" aria-label="Preparation">
+      <div class="prep-content">
+
+        <div class="progress-wrap" style="margin-top: var(--space-2xl);">
+          <div class="progress-wrap__labels">
+            <span class="text-label">Preparation</span>
+            <span class="text-caption">0 of 5 complete</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill progress-fill--forest" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <div class="prep-section">
+          <div class="section-header">
+            <span class="section-header__title">Weather Readiness</span>
+          </div>
+          <ul class="checklist">
+
+            <li class="check-item" data-check>
+              <span class="check-box" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+              </span>
+              <div>
+                <span class="check-item__label">Comfortable outdoor footwear</span>
+                <p class="check-item__hint">Muddy fields, three days of standing and walking</p>
+              </div>
+            </li>
+
+            <li class="check-item" data-check>
+              <span class="check-box" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+              </span>
+              <div>
+                <span class="check-item__label">Rain layer</span>
+                <p class="check-item__hint">August weather in upstate New York is unpredictable</p>
+              </div>
+            </li>
+
+            <li class="check-item" data-check>
+              <span class="check-box" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+              </span>
+              <div>
+                <span class="check-item__label">Reusable water bottle</span>
+                <p class="check-item__hint">Large crowds, limited amenities on-site</p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+        <div class="prep-section">
+          <div class="section-header">
+            <span class="section-header__title">Period Readiness</span>
+          </div>
+          <ul class="checklist">
+
+            <li class="check-item" data-check>
+              <span class="check-box" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+              </span>
+              <div>
+                <span class="check-item__label">1960s-style clothing, no modern branding</span>
+                <p class="check-item__hint">Blend into the cultural moment</p>
+              </div>
+            </li>
+
+            <li class="check-item" data-check>
+              <span class="check-box" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+              </span>
+              <div>
+                <span class="check-item__label">Cash only, no cards or modern currency</span>
+                <p class="check-item__hint">Anachronistic payment methods draw attention</p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+        <div style="margin-top: var(--space-2xl);">
+          <button class="btn-primary btn-full" data-goto="surprise-ready">I'm Ready</button>
+        </div>
+
+      </div>
+    </section>
+    <section id="screen-surprise-ready" class="screen" data-screen="surprise-ready" aria-label="Ready">
+      <div class="ready-content">
+
+        <div class="ready-icon" aria-hidden="true">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+            <path d="M6 15l6 6 12-12" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"/>
+          </svg>
+        </div>
+
+        <h2 class="ready-title">You're Ready</h2>
+        <p class="ready-body">Your preparation is complete. This is where Era's scope ends &mdash; the physical journey begins with separate equipment.</p>
+
+        <div class="journey-card ready-card" style="border-top-color: var(--forest);">
+          <div class="journey-card__body">
+            <p class="card-title" style="text-transform: uppercase;">Woodstock Music Festival</p>
+            <p class="card-subtitle">August 15, 1969 &middot; Bethel, New York</p>
+            <div class="divider"></div>
+            <div class="journey-card__row">
+              <span class="text-label">Status</span>
+              <span class="risk-badge green">Ready</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ready-actions">
+          <button class="btn-outline btn-full" data-goto="explore-entry">Back to My Trips</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         FLOW D — Precision Search / Red (Pompeii)
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="screen-pompeii-search"      class="screen" data-screen="pompeii-search"      aria-label="Precision Search"></section>
+    <section id="screen-pompeii-results" class="screen" data-screen="pompeii-results" aria-label="Results">
+      <div class="results-content">
+
+        <p class="results-eyebrow">1 result found</p>
+
+        <div
+          class="result-card"
+          role="button"
+          tabindex="0"
+          aria-label="Pompeii — Eruption of Vesuvius, blocked — view risk details"
+          data-goto="red-blocked"
+        >
+          <!-- Image area -->
+          <div class="result-card__image">
+            <p class="result-card__image-caption">Historical illustration of Pompeii, 79 AD</p>
+            <div class="result-card__badge">
+              <span class="risk-badge red">Blocked</span>
+            </div>
+          </div>
+
+          <!-- Card body -->
+          <div class="result-card__body">
+            <h3 class="card-title">Pompeii &mdash; Eruption of Vesuvius</h3>
+            <p class="card-subtitle">Aug 24, 79 AD &middot; Pompeii, Roman Empire</p>
+            <p class="card-body">Mount Vesuvius erupts catastrophically, burying the city under ash and pyroclastic flow within hours.</p>
+          </div>
+        </div><!-- /.result-card -->
+
+        <p class="results-caption">All search fields matched &mdash; showing exact result</p>
+
+      </div><!-- /.results-content -->
+    </section>
+    <section id="screen-red-blocked" class="screen" data-screen="red-blocked" aria-label="Access Blocked">
+      <div class="blocked-content">
+
+        <p class="blocked-eyebrow">&#9940; Blocked</p>
+
+        <h2 class="blocked-title">Pompeii &mdash;<br>Eruption of Vesuvius</h2>
+        <p class="blocked-dataline">Aug 24, 79 AD &middot; Pompeii, Roman Empire</p>
+
+        <!-- Risk box — red hard-stop variant -->
+        <div class="risk-box risk-box--red" style="margin-top: var(--space-lg);">
+          <p class="risk-box__title">Why Is This Blocked?</p>
+          <p class="risk-box__body">Pyroclastic flow and toxic gas reach lethal concentrations within minutes of eruption onset. No mitigation exists &mdash; this destination is not survivable at this date and time.</p>
+        </div>
+
+        <!-- Preserved intent section -->
+        <div class="preserved-intent">
+          <span class="preserved-intent__label">Preserved Intent</span>
+          <p class="preserved-intent__body">You were interested in Roman civilization under threat. Here are three alternatives that preserve that intent.</p>
+        </div>
+
+        <!-- Single action — no override path -->
+        <div class="blocked-actions">
+          <button class="btn-danger btn-full" data-goto="red-alternatives">
+            View Alternatives
+          </button>
+        </div>
+
+      </div><!-- /.blocked-content -->
+    </section>
+    <section id="screen-red-alternatives" class="screen" data-screen="red-alternatives" aria-label="Alternatives">
+      <div class="results-content">
+
+        <header class="explore-header">
+          <h2 class="explore-header__title">Choose an Alternative</h2>
+          <p class="explore-header__sub">Same era, same intensity &mdash; without the risk.</p>
+        </header>
+
+        <!-- Card 1 — The Colosseum Opening Games -->
+        <div
+          class="result-card"
+          role="button"
+          tabindex="0"
+          aria-label="The Colosseum Opening Games, 80 AD — safe destination"
+          data-goto="alt-preparation"
+          style="margin-top: var(--space-lg);"
+        >
+          <div class="result-card__image">
+            <p class="result-card__image-caption">Illustration of the Flavian Amphitheatre, 80 AD</p>
+            <div class="result-card__badge">
+              <span class="risk-badge green">Safe</span>
+            </div>
+          </div>
+          <div class="result-card__body">
+            <h3 class="card-title">The Colosseum &mdash; Opening Games</h3>
+            <p class="card-subtitle">80 AD &middot; Rome, Roman Empire</p>
+            <p class="card-body">Witness the inaugural games at the newly built Flavian Amphitheatre &mdash; 100 days of spectacle.</p>
+          </div>
+        </div>
+
+        <!-- Card 2 — Pompeii Market Day -->
+        <div
+          class="result-card"
+          role="button"
+          tabindex="0"
+          aria-label="Pompeii Market Day, 60 AD — safe destination"
+          data-goto="alt-preparation"
+          style="margin-top: 12px;"
+        >
+          <div class="result-card__image">
+            <p class="result-card__image-caption">Illustration of Pompeii forum, 60 AD</p>
+            <div class="result-card__badge">
+              <span class="risk-badge green">Safe</span>
+            </div>
+          </div>
+          <div class="result-card__body">
+            <h3 class="card-title">Pompeii &mdash; Market Day, 60 AD</h3>
+            <p class="card-subtitle">60 AD &middot; Pompeii, Roman Empire (19 years before eruption)</p>
+            <p class="card-body">Experience the thriving city in full daily life, two decades before the eruption &mdash; same place, no danger.</p>
+          </div>
+        </div>
+
+        <!-- Card 3 — Herculaneum Seaside Villas -->
+        <div
+          class="result-card"
+          role="button"
+          tabindex="0"
+          aria-label="Herculaneum Seaside Villas, 70 AD — safe destination"
+          data-goto="alt-preparation"
+          style="margin-top: 12px;"
+        >
+          <div class="result-card__image">
+            <p class="result-card__image-caption">Illustration of Herculaneum coastal villas, 70 AD</p>
+            <div class="result-card__badge">
+              <span class="risk-badge green">Safe</span>
+            </div>
+          </div>
+          <div class="result-card__body">
+            <h3 class="card-title">Herculaneum &mdash; Seaside Villas</h3>
+            <p class="card-subtitle">70 AD &middot; Herculaneum, Roman Empire</p>
+            <p class="card-body">A wealthy coastal town near Vesuvius, a decade before the eruption &mdash; Roman leisure architecture at its peak.</p>
+          </div>
+        </div>
+
+        <p class="results-caption" style="text-align: center;">Selecting any option restarts your journey with a safe destination</p>
+
+      </div><!-- /.results-content -->
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         FLOW D (cont.) — Alt Preparation & Ready
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="screen-alt-preparation" class="screen" data-screen="alt-preparation" aria-label="Preparation">
+      <div class="prep-content">
+
+        <!-- Progress bar -->
+        <div class="progress-wrap" style="margin-top: var(--space-2xl);">
+          <div class="progress-wrap__labels">
+            <span class="text-label">Preparation</span>
+            <span class="text-caption">0 of 5 complete</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill progress-fill--forest" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Section 1: Weather Readiness -->
+        <div class="prep-section">
+          <div class="section-header">
+            <span class="section-header__title">Weather Readiness</span>
+          </div>
+          <ul class="checklist">
+
+            <li class="check-item" data-check>
+              <span class="check-box" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+              </span>
+              <div>
+                <span class="check-item__label">Light linen tunic</span>
+                <p class="check-item__hint">Roman summer heat, breathable fabric essential</p>
+              </div>
+            </li>
+
+            <li class="check-item" data-check>
+              <span class="check-box" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+              </span>
+              <div>
+                <span class="check-item__label">Leather sandals</span>
+                <p class="check-item__hint">Stone streets, long walking distances</p>
+              </div>
+            </li>
+
+            <li class="check-item" data-check>
+              <span class="check-box" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+              </span>
+              <div>
+                <span class="check-item__label">Sun covering / wide-brim hat</span>
+                <p class="check-item__hint">Minimal shade in open forums and markets</p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+        <!-- Section 2: Period Readiness -->
+        <div class="prep-section">
+          <div class="section-header">
+            <span class="section-header__title">Period Readiness</span>
+          </div>
+          <ul class="checklist">
+
+            <li class="check-item" data-check>
+              <span class="check-box" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+              </span>
+              <div>
+                <span class="check-item__label">Roman-style tunic and belt, no modern fabrics</span>
+                <p class="check-item__hint">Blend in &mdash; avoid synthetic materials and modern cuts</p>
+              </div>
+            </li>
+
+            <li class="check-item" data-check>
+              <span class="check-box" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+              </span>
+              <div>
+                <span class="check-item__label">Basic Latin phrases reference card</span>
+                <p class="check-item__hint">Local dialect assistance for daily interactions</p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+        <!-- CTA -->
+        <div style="margin-top: var(--space-2xl);">
+          <button class="btn-primary btn-full" data-goto="alt-ready">I'm Ready</button>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="screen-alt-ready" class="screen" data-screen="alt-ready" aria-label="Ready">
+      <div class="ready-content">
+
+        <div class="ready-icon" aria-hidden="true">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+            <path d="M6 15l6 6 12-12" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"/>
+          </svg>
+        </div>
+
+        <h2 class="ready-title">You're Ready</h2>
+        <p class="ready-body">Your preparation is complete. This is where Era's scope ends &mdash; the physical journey begins with separate equipment.</p>
+
+        <div class="journey-card ready-card" style="border-top-color: var(--forest);">
+          <div class="journey-card__body">
+            <p class="card-title" style="text-transform: uppercase;">Your Roman Journey</p>
+            <p class="card-subtitle">1st century AD &middot; Roman Empire</p>
+            <div class="divider"></div>
+            <div class="journey-card__row">
+              <span class="text-label">Status</span>
+              <span class="risk-badge green">Ready</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ready-actions">
+          <button class="btn-outline btn-full" data-goto="explore-entry">Back to My Trips</button>
+        </div>
+
+      </div>
+    </section>
+
+  </div><!-- /#app -->
+
+  <script src="js/app.js"></script>
+</body>
+</html>
