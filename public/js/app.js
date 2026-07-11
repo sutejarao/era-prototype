@@ -23,8 +23,9 @@
     // ── Flow B — Start from Here / Green (Moon Landing) ─────────
     { id: 'green-current-location',     title: 'Your Location',       noNav: false, noBack: false },
     { id: 'green-results',              title: 'Nearby Eras',         noNav: false, noBack: false },
-    { id: 'green-detail',               title: 'Era Detail',          noNav: false, noBack: false },
-    { id: 'green-journey-confirmed',    title: 'Journey Confirmed',   noNav: false, noBack: false },
+    { id: 'green-detail',               title: 'Select Journey',      noNav: false, noBack: false },
+    { id: 'green-journey-confirmed',    title: 'Risk Assessed',       noNav: false, noBack: false },
+    { id: 'green-current-journey',      title: 'Your Journey',        noNav: false, noBack: false },
     { id: 'green-preparation',          title: 'Preparation',         noNav: false, noBack: false },
     { id: 'green-ready',                title: 'Ready',               noNav: false, noBack: false },
 
@@ -73,21 +74,30 @@
 
   // ─── Nav Bar Update ───────────────────────────────────────────
   function updateNavBar(screenId) {
-    const meta    = SCREEN_MAP[screenId];
-    const navBar  = getNavBar();
-    const title   = getNavTitle();
-    const backBtn = getBackBtn();
+    const meta      = SCREEN_MAP[screenId];
+    const navBar    = getNavBar();
+    const bottomNav = document.getElementById('bottom-nav');
+    const title     = getNavTitle();
+    const backBtn   = getBackBtn();
 
     if (!navBar) return;
 
     if (meta.noNav) {
       navBar.hidden = true;
       navBar.setAttribute('aria-hidden', 'true');
+      if (bottomNav) {
+        bottomNav.hidden = true;
+        bottomNav.setAttribute('aria-hidden', 'true');
+      }
       return;
     }
 
     navBar.hidden = false;
     navBar.removeAttribute('aria-hidden');
+    if (bottomNav) {
+      bottomNav.hidden = false;
+      bottomNav.removeAttribute('aria-hidden');
+    }
 
     if (title) title.textContent = meta.title || '';
 
@@ -283,6 +293,25 @@
         const btn = e.target.closest('[role="button"][data-goto]');
         if (btn) { e.preventDefault(); handleClick(e); }
       }
+    });
+
+    // Tab toggle — delegated on document
+    document.addEventListener('click', (e) => {
+      const tab = e.target.closest('[data-tab-target]');
+      if (!tab) return;
+
+      const panelId      = tab.dataset.tabTarget;
+      const tabsContainer = tab.closest('.prep-tabs');
+      if (!tabsContainer) return;
+
+      tabsContainer.querySelectorAll('[data-tab-target]').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const screen = tab.closest('.screen');
+      if (!screen) return;
+      screen.querySelectorAll('[data-tab-panel]').forEach(p => p.classList.add('hidden'));
+      const panel = screen.querySelector(`[data-tab-panel="${panelId}"]`);
+      if (panel) panel.classList.remove('hidden');
     });
 
     // Checklist toggle — delegated on document

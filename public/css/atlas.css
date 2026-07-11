@@ -1094,3 +1094,276 @@ textarea.input-field {
 .bg-cream-dark { background: var(--cream-dark); }
 .bg-white      { background: var(--white); }
 .bg-teal       { background: var(--teal); }
+
+/* ═══════════════════════════════════════════════════════════════
+   BOTTOM NAVIGATION
+   ═══════════════════════════════════════════════════════════════ */
+
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+  height: 56px;
+  background: var(--white);
+  border-top: 1px solid var(--cream-dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 var(--space-sm);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.bottom-nav[hidden] {
+  display: none;
+}
+
+.bottom-nav__tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-width: 56px;
+  min-height: 48px;
+  color: var(--grey-3);
+  background: none;
+  border: none;
+  cursor: default;
+  padding: var(--space-xs);
+}
+
+.bottom-nav__tab.active {
+  color: var(--teal);
+}
+
+.bottom-nav__tab-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FILTER PILLS
+   ═══════════════════════════════════════════════════════════════ */
+
+.filter-pills {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.filter-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px var(--space-md);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: var(--radius-pill);
+  border: var(--border-width) solid var(--teal);
+  color: var(--teal);
+  background: transparent;
+  white-space: nowrap;
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.filter-pill.active {
+  background: var(--teal);
+  color: var(--white);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FEATURED CARD  (Sunset Orange left accent)
+   ═══════════════════════════════════════════════════════════════ */
+
+.featured-card {
+  background: var(--cream-dark);
+  border: var(--border-width) solid var(--border-strong);
+  border-left: var(--border-width-heavy) solid var(--orange);
+  padding: var(--space-lg);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.featured-card__icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--orange);
+  font-size: 20px;
+  line-height: 1;
+}
+
+.featured-card__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.featured-card__eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+
+.featured-card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-section);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-top: 3px;
+  line-height: 1.2;
+}
+
+.featured-card__body {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--grey-2);
+  line-height: 1.5;
+  margin-top: var(--space-xs);
+}
+
+.featured-card__action {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 4px var(--space-md);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: var(--border-width) solid var(--teal);
+  color: var(--teal);
+  background: transparent;
+  margin-top: var(--space-sm);
+  cursor: default;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PREP TAB TOGGLE
+   ═══════════════════════════════════════════════════════════════ */
+
+.prep-tabs {
+  display: flex;
+  border: var(--border-width) solid var(--teal);
+  overflow: hidden;
+}
+
+.prep-tab {
+  flex: 1;
+  min-height: 42px;
+  padding: var(--space-md);
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  background: transparent;
+  color: var(--teal);
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.prep-tab.active {
+  background: var(--teal);
+  color: var(--white);
+}
+
+.prep-tab:not(:last-child) {
+  border-right: var(--border-width) solid var(--teal);
+}
+
+.tab-panel.hidden {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MISC HELPERS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Inline badge + text row */
+.card-data-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+/* Featured tag inside card body */
+.card-featured-tag {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--orange);
+}
+
+/* Two-column date fields */
+.date-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+/* Logistics departure/return sections */
+.logistics-section {
+  margin-top: var(--space-md);
+}
+
+.logistics-section__label {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal);
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.logistics-section__line {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--grey-1);
+  line-height: 1.8;
+}
+
+/* Result card image from <img> tag */
+.result-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Bottom nav clearance for all scrollable content areas */
+.results-content,
+.blocked-content,
+.prep-content,
+.intent-content,
+.ready-content,
+.ps-content,
+.explore-content,
+.location-content {
+  padding-bottom: 80px;
+}

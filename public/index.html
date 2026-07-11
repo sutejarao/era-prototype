@@ -773,6 +773,65 @@
       background: var(--cream-dark);
     }
 
+    /* ── Green flow rebuilt screens ─────────────────────── */
+    .location-content {
+      padding: 52px var(--space-2xl) var(--space-2xl);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .map-area {
+      position: relative;
+      height: 140px;
+      background: var(--cream-dark);
+      border: var(--border-width) solid var(--border-strong);
+      overflow: hidden;
+      margin-top: var(--space-lg);
+      flex-shrink: 0;
+    }
+
+    .map-area svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .map-pin {
+      position: absolute;
+      left: 60%;
+      top: 44%;
+      transform: translate(-50%, -100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .time-scrub__readout {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    /* ── Green journey-confirmed icon (larger) ───────────── */
+    .risk-ok-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(59, 91, 59, 0.12);
+      border: 3px solid var(--forest);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--forest);
+      flex-shrink: 0;
+      animation: checkPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
     /* Dim inactive cards */
     .entry-card--dim {
       opacity: 0.5;
@@ -832,6 +891,30 @@
 <body>
 
   <div id="app">
+
+    <!-- ── Bottom Navigation (hidden on sign-in by app.js) ──── -->
+    <nav id="bottom-nav" class="bottom-nav" hidden aria-hidden="true">
+      <button class="bottom-nav__tab active" type="button" aria-label="Explore">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+        <span class="bottom-nav__tab-label">Explore</span>
+      </button>
+      <button class="bottom-nav__tab" type="button" aria-label="My Trips">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true">
+          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+        </svg>
+        <span class="bottom-nav__tab-label">My Trips</span>
+      </button>
+      <button class="bottom-nav__tab" type="button" aria-label="Settings">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+        <span class="bottom-nav__tab-label">Settings</span>
+      </button>
+    </nav>
 
     <!-- ── Shared Nav Bar (hidden on sign-in by app.js) ──────── -->
     <nav id="nav-bar" class="proto-nav" hidden aria-hidden="true">
@@ -1119,108 +1202,92 @@
          FLOW B — Start from Here / Green (Moon Landing)
     ═══════════════════════════════════════════════════════════ -->
     <section id="screen-green-current-location" class="screen" data-screen="green-current-location" aria-label="Your Location">
-      <div class="results-content">
+      <div class="location-content">
 
-        <p class="results-eyebrow" style="padding-top: var(--space-2xl);">Your Current Location</p>
+        <p class="results-eyebrow" style="padding-top: var(--space-2xl);">Cape Canaveral, Florida</p>
 
-        <!-- Location card: map illustration + footer -->
-        <div class="location-card">
-
-          <!-- Map illustration -->
-          <div class="location-card__map" aria-hidden="true">
-            <!-- Florida peninsula — flat geometric poster style, cream/teal only -->
-            <svg class="map-illustration" viewBox="0 0 327 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-              <!-- Ocean fill -->
-              <rect width="327" height="180" fill="#E8DBBD"/>
-              <!-- Florida peninsula body — simplified flat silhouette -->
-              <path d="
-                M 60 0
-                L 180 0
-                L 185 20
-                L 188 55
-                L 192 90
-                L 196 115
-                L 200 130
-                L 208 148
-                L 210 158
-                L 205 165
-                L 196 168
-                L 185 162
-                L 175 150
-                L 165 138
-                L 152 128
-                L 138 122
-                L 120 120
-                L 108 124
-                L 95 132
-                L 82 136
-                L 68 132
-                L 58 122
-                L 52 108
-                L 50 90
-                L 52 65
-                L 55 40
-                L 58 18
-                Z
-              " fill="#C8BAA2" opacity="0.6"/>
-              <!-- Subtle inland lake shapes -->
-              <ellipse cx="110" cy="85" rx="12" ry="7" fill="#E8DBBD" opacity="0.8"/>
-              <ellipse cx="130" cy="105" rx="8" ry="5" fill="#E8DBBD" opacity="0.6"/>
-              <!-- Atlantic coast line (east edge) -->
-              <path d="M 185 0 L 192 55 L 196 110 L 205 155" stroke="#1C5C5C" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.3"/>
-              <!-- State outline accent -->
-              <path d="
-                M 180 0 L 185 20 L 188 55 L 192 90 L 196 115
-                L 200 130 L 208 148 L 210 158 L 205 165
-                L 196 168 L 185 162 L 175 150
-              " stroke="#1C5C5C" stroke-width="1.5" fill="none" opacity="0.4"/>
+        <!-- Poster-style map -->
+        <div class="map-area" aria-hidden="true">
+          <svg viewBox="0 0 327 140" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="327" height="140" fill="#E8DBBD"/>
+            <path d="M 60 0 L 180 0 L 185 20 L 188 45 L 192 70 L 196 90 L 200 105 L 208 118 L 210 128 L 205 135 L 196 138 L 185 132 L 175 120 L 165 108 L 152 98 L 138 92 L 120 90 L 108 94 L 95 102 L 82 106 L 68 102 L 58 92 L 52 78 L 50 60 L 52 35 L 55 15 L 58 5 Z" fill="#C8BAA2" opacity="0.6"/>
+            <ellipse cx="110" cy="70" rx="12" ry="7" fill="#E8DBBD" opacity="0.8"/>
+            <ellipse cx="130" cy="85" rx="8" ry="5" fill="#E8DBBD" opacity="0.6"/>
+            <path d="M 185 0 L 192 45 L 196 85 L 205 125" stroke="#1C5C5C" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.3"/>
+            <path d="M 180 0 L 185 20 L 188 45 L 192 70 L 196 90 L 200 105 L 208 118 L 210 128 L 205 135 L 196 138 L 185 132 L 175 120" stroke="#1C5C5C" stroke-width="1.5" fill="none" opacity="0.4"/>
+          </svg>
+          <div class="map-pin" aria-label="Cape Canaveral">
+            <svg width="20" height="26" viewBox="0 0 24 30" fill="none">
+              <path d="M12 0C7.58 0 4 3.58 4 8c0 6 8 16 8 16s8-10 8-16c0-4.42-3.58-8-8-8z" fill="#1C5C5C"/>
+              <circle cx="12" cy="8" r="3.5" fill="#F3E9D2"/>
             </svg>
-
-            <!-- Cape Canaveral pin — positioned on east coast mid-Florida -->
-            <div class="location-card__pin" aria-label="Cape Canaveral marker">
-              <div class="location-card__pin-icon">
-                <svg width="24" height="30" viewBox="0 0 24 30" fill="none">
-                  <path d="M12 0C7.58 0 4 3.58 4 8c0 6 8 16 8 16s8-10 8-16c0-4.42-3.58-8-8-8z" fill="#1C5C5C"/>
-                  <circle cx="12" cy="8" r="3.5" fill="#F3E9D2"/>
-                </svg>
-              </div>
-              <div class="location-card__pin-dot"></div>
-            </div>
           </div>
+        </div>
 
-          <!-- Card footer: name + detected label -->
-          <div class="location-card__footer">
-            <p class="location-card__name">Cape Canaveral, Florida</p>
-            <p class="location-card__meta">Detected via device location</p>
+        <!-- Time scrub — decorative -->
+        <div class="time-scrub" style="margin-top: var(--space-lg);">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: var(--space-sm);">
+            <span class="time-scrub__label" style="margin-bottom: 0;">Explore Timeline</span>
+            <span class="time-scrub__readout">July 1969</span>
           </div>
-
-        </div><!-- /.location-card -->
-
-        <!-- Time scrub — decorative, non-interactive -->
-        <div class="time-scrub">
-          <span class="time-scrub__label">Browse Across Time</span>
           <div class="time-scrub__track-wrap" aria-hidden="true">
             <div class="time-scrub__track">
-              <div class="time-scrub__fill"></div>
-              <div class="time-scrub__handle"></div>
+              <div class="time-scrub__fill" style="width: 85%;"></div>
+              <div class="time-scrub__handle" style="left: 85%;"></div>
             </div>
             <div class="time-scrub__ticks">
-              <span class="time-scrub__tick">Ancient</span>
-              <span class="time-scrub__tick">Medieval</span>
-              <span class="time-scrub__tick">Modern</span>
-              <span class="time-scrub__tick time-scrub__tick--now">Now</span>
+              <span class="time-scrub__tick">10,000 BC</span>
+              <span class="time-scrub__tick time-scrub__tick--now">2025</span>
             </div>
           </div>
         </div>
 
-        <!-- Section header -->
-        <div style="margin-top: var(--space-xl);">
-          <p class="section-header__title">What Happened Here?</p>
-          <p class="explore-header__sub" style="margin-top: var(--space-xs);">Significant moments across time at this location</p>
+        <!-- Filter pills -->
+        <div class="filter-pills" style="margin-top: var(--space-lg);">
+          <button class="filter-pill active" type="button">All</button>
+          <button class="filter-pill" type="button">Safe only</button>
+          <button class="filter-pill" type="button">Featured</button>
         </div>
 
-        <div style="margin-top: var(--space-lg);">
-          <button class="btn-primary btn-full" data-goto="green-results">See Events</button>
+        <p class="results-eyebrow" style="margin-top: var(--space-lg); padding-top: 0;">3 events found near you</p>
+
+        <!-- Card 1: Moon Landing (active → green-detail) -->
+        <div class="result-card" role="button" tabindex="0" aria-label="The Moon Landing, July 1969 — view details" data-goto="green-detail" style="margin-top: 12px;">
+          <div class="result-card__image">
+            <p class="result-card__image-caption">Apollo 11 — Cape Canaveral, July 16, 1969</p>
+            <span class="result-card__badge"><span class="risk-badge green">Safe</span></span>
+          </div>
+          <div class="result-card__body">
+            <p class="card-title">The Moon Landing</p>
+            <p class="card-subtitle">July 1969 &middot; Cape Canaveral, FL</p>
+            <p class="card-body">Witness Apollo 11 lift off toward the Moon from public viewing areas at KSC.</p>
+          </div>
+        </div>
+
+        <!-- Card 2: Great Miami Hurricane (decorative) -->
+        <div class="result-card" style="margin-top: 12px; opacity: 0.5; pointer-events: none;" aria-hidden="true">
+          <div class="result-card__image">
+            <p class="result-card__image-caption">Hurricane Season — Florida, 1926</p>
+            <span class="result-card__badge"><span class="risk-badge amber">Caution</span></span>
+          </div>
+          <div class="result-card__body">
+            <p class="card-title">Great Miami Hurricane</p>
+            <p class="card-subtitle">September 1926 &middot; Miami, FL</p>
+            <p class="card-body">Category 4 landfall. Significant environmental and structural hazards.</p>
+          </div>
+        </div>
+
+        <!-- Card 3: Explorer I Launch (decorative) -->
+        <div class="result-card" style="margin-top: 12px; opacity: 0.5; pointer-events: none;" aria-hidden="true">
+          <div class="result-card__image">
+            <p class="result-card__image-caption">Space Race — Cape Canaveral, 1958</p>
+            <span class="result-card__badge"><span class="risk-badge green">Safe</span></span>
+          </div>
+          <div class="result-card__body">
+            <p class="card-title">Explorer I Launch</p>
+            <p class="card-subtitle">February 1958 &middot; Cape Canaveral, FL</p>
+            <p class="card-body">America's first satellite launch. Public observation allowed.</p>
+          </div>
         </div>
 
       </div>
@@ -1292,39 +1359,76 @@
 
       </div>
     </section>
-    <section id="screen-green-detail" class="screen" data-screen="green-detail" aria-label="Era Detail">
+    <section id="screen-green-detail" class="screen" data-screen="green-detail" aria-label="Select Journey">
       <div class="blocked-content">
 
-        <span class="risk-badge green" style="margin-top: var(--space-2xl); align-self: flex-start;">Safe</span>
+        <div style="padding-top: var(--space-2xl);">
+          <div class="card-data-row">
+            <h2 class="blocked-title" style="margin-top: 0;">The Moon Landing</h2>
+            <span class="risk-badge green">Safe</span>
+          </div>
+          <p class="blocked-dataline">July 20, 1969 &middot; Cape Canaveral, FL</p>
+        </div>
 
-        <h2 class="blocked-title" style="margin-top: var(--space-md);">The Moon Landing</h2>
-        <p class="blocked-dataline">July 20, 1969 &middot; Cape Canaveral, FL</p>
+        <p class="card-body" style="margin-top: var(--space-md);">Apollo 11 launches carrying Neil Armstrong, Buzz Aldrin, and Michael Collins. Public viewing areas, no environmental hazards.</p>
 
-        <p class="card-body" style="margin-top: var(--space-lg);">Apollo 11 launches carrying Neil Armstrong, Buzz Aldrin, and Michael Collins. This is one of the most historically significant and safest destinations in the network &mdash; heavily documented, publicly accessible, and zero environmental hazard.</p>
+        <!-- Who to See -->
+        <div class="input-group" style="margin-top: var(--space-xl);">
+          <label class="input-label">Who Do You Want to See?</label>
+          <input class="input-field" type="text" placeholder="Neil Armstrong, Buzz Aldrin&hellip;" readonly />
+        </div>
 
-        <div class="risk-box risk-box--green" style="margin-top: var(--space-lg);">
-          <p class="risk-box__title">Why Is This Safe?</p>
-          <p class="risk-box__body">Public viewing areas, well-documented conditions, no environmental or civil hazards recorded at this time and place.</p>
+        <!-- Where Are You Going -->
+        <div class="input-group" style="margin-top: var(--space-md);">
+          <label class="input-label">Where Are You Going?</label>
+          <input class="input-field" type="text" placeholder="KSC Public Viewing Area, FL" readonly />
+        </div>
+
+        <!-- Depart / Return -->
+        <div class="date-row" style="margin-top: var(--space-md);">
+          <div class="input-group">
+            <label class="input-label">Depart</label>
+            <input class="input-field" type="text" value="Jul 16, 1969" readonly />
+          </div>
+          <div class="input-group">
+            <label class="input-label">Return</label>
+            <input class="input-field" type="text" value="Jul 24, 1969" readonly />
+          </div>
+        </div>
+
+        <!-- Featured VIP card -->
+        <div class="featured-card" style="margin-top: var(--space-xl);">
+          <div class="featured-card__icon" aria-hidden="true">★</div>
+          <div>
+            <p class="featured-card__eyebrow">VIP Experience</p>
+            <p class="featured-card__title">Mission Control Access</p>
+            <p class="featured-card__body">Join the Flight Directors in Houston for real-time telemetry during powered ascent.</p>
+            <button class="featured-card__action" type="button">Learn More</button>
+          </div>
         </div>
 
         <div style="margin-top: var(--space-2xl);">
-          <button class="btn-primary btn-full" data-goto="green-journey-confirmed">Confirm Journey</button>
+          <button class="btn-primary btn-full" data-goto="green-journey-confirmed">Select Journey</button>
         </div>
 
       </div>
     </section>
-    <section id="screen-green-journey-confirmed" class="screen" data-screen="green-journey-confirmed" aria-label="Journey Confirmed">
-      <div class="blocked-content">
+    <section id="screen-green-journey-confirmed" class="screen" data-screen="green-journey-confirmed" aria-label="Risk Assessed">
+      <div class="ready-content">
 
-        <span class="risk-badge green" style="margin-top: var(--space-2xl); align-self: flex-start;">Safe</span>
+        <div class="risk-ok-icon" style="margin-top: var(--space-3xl);" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 30 30" fill="none">
+            <path d="M6 15l6 6 12-12" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"/>
+          </svg>
+        </div>
 
-        <h2 class="explore-header__title" style="margin-top: 12px;">Journey Confirmed</h2>
-        <p class="card-body" style="margin-top: var(--space-sm);">No mitigation needed &mdash; this destination is safe as-is. Your preparation checklist is ready.</p>
+        <h2 class="ready-title" style="margin-top: var(--space-lg);">Safe to Travel</h2>
+        <p class="ready-body">No mitigation required. This destination clears all safety checks.</p>
 
-        <!-- Journey summary card -->
-        <div class="journey-card" style="margin-top: var(--space-xl); border-top-color: var(--forest);">
+        <!-- Journey mini-card -->
+        <div class="journey-card ready-card" style="border-top-color: var(--forest);">
           <div class="journey-card__body">
-            <p style="font-family: var(--font-body); font-size: var(--text-caption); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--forest);">Confirmed Journey</p>
+            <p style="font-family: var(--font-body); font-size: var(--text-caption); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--forest);">Risk Assessment</p>
             <p class="card-title" style="margin-top: var(--space-xs); text-transform: uppercase;">The Moon Landing</p>
             <p class="card-subtitle">July 20, 1969 &middot; Cape Canaveral, FL</p>
             <div class="divider"></div>
@@ -1332,35 +1436,73 @@
               <span class="text-label">Risk Level</span>
               <span class="risk-badge green">Safe</span>
             </div>
+            <div class="journey-card__row" style="margin-top: var(--space-sm);">
+              <span class="text-label">Hazards</span>
+              <span class="text-label" style="color: var(--forest);">None detected</span>
+            </div>
           </div>
         </div>
 
-        <div style="margin-top: var(--space-2xl);">
-          <button class="btn-primary btn-full" data-goto="green-preparation">Prepare for Journey</button>
+        <!-- Contextual featured card -->
+        <div class="featured-card" style="width: 100%; margin-top: var(--space-lg);">
+          <div class="featured-card__icon" aria-hidden="true">★</div>
+          <div>
+            <p class="featured-card__eyebrow">Guide Note</p>
+            <p class="featured-card__title">Crowds Expected</p>
+            <p class="featured-card__body">~1 million spectators lined the Florida coast. Arrive early for viewing position.</p>
+          </div>
+        </div>
+
+        <div style="width: 100%; margin-top: var(--space-xl);">
+          <button class="btn-primary btn-full" data-goto="green-current-journey">Continue</button>
         </div>
 
       </div>
     </section>
-    <section id="screen-green-preparation" class="screen" data-screen="green-preparation" aria-label="Preparation">
-      <div class="prep-content">
 
-        <!-- Progress bar -->
-        <div class="progress-wrap" style="margin-top: var(--space-2xl);">
-          <div class="progress-wrap__labels">
-            <span class="text-label">Preparation</span>
-            <span class="text-caption" id="green-prep-count">0 of 5 complete</span>
-          </div>
-          <div class="progress-track">
-            <div class="progress-fill progress-fill--forest" id="green-prep-fill" style="width: 0%;"></div>
+    <!-- ── Green: Your Journey overview ──────────────────────── -->
+    <section id="screen-green-current-journey" class="screen" data-screen="green-current-journey" aria-label="Your Journey">
+      <div class="blocked-content">
+
+        <p class="results-eyebrow" style="padding-top: var(--space-2xl);">Journey Overview</p>
+
+        <!-- Journey detail card -->
+        <div class="journey-card" style="margin-top: var(--space-lg); border-top-color: var(--forest);">
+          <div class="journey-card__body">
+            <p class="card-title" style="text-transform: uppercase;">The Moon Landing</p>
+            <p class="card-subtitle">July 20, 1969 &middot; Cape Canaveral, FL</p>
+            <div class="divider"></div>
+            <div class="journey-card__row">
+              <span class="text-label">Departing</span>
+              <span class="text-label" style="color: var(--teal);">July 16, 1969</span>
+            </div>
+            <div class="journey-card__row" style="margin-top: var(--space-sm);">
+              <span class="text-label">Duration</span>
+              <span class="text-label" style="color: var(--teal);">8 days</span>
+            </div>
+            <div class="journey-card__row" style="margin-top: var(--space-sm);">
+              <span class="text-label">Comfort Clothing</span>
+              <span class="text-label" style="color: var(--teal);">Summer casual</span>
+            </div>
           </div>
         </div>
 
-        <!-- Section 1: Safety & Access -->
-        <div class="prep-section">
-          <div class="section-header">
-            <span class="section-header__title">Safety &amp; Access</span>
+        <!-- Preparation preview -->
+        <div style="margin-top: var(--space-xl);">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span class="section-header__title">Preparation</span>
+            <span class="text-caption" style="color: var(--grey-3);">1 of 5 complete</span>
           </div>
-          <ul class="checklist" id="green-checklist" aria-label="Preparation checklist">
+          <ul class="checklist" style="margin-top: var(--space-md);" aria-label="Preparation preview">
+
+            <li class="check-item done" data-check>
+              <span class="check-box" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+              </span>
+              <span class="check-item__label">Confirm viewing area pass</span>
+            </li>
 
             <li class="check-item" data-check>
               <span class="check-box" aria-hidden="true">
@@ -1368,13 +1510,70 @@
                   <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
                 </svg>
               </span>
-              <div>
-                <span class="check-item__label">Confirm public viewing area pass</span>
-                <p class="check-item__hint">Required for close-range access to the launch site</p>
-              </div>
+              <span class="check-item__label">Sun protection &mdash; hat and sunscreen</span>
             </li>
 
             <li class="check-item" data-check>
+              <span class="check-box" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+              </span>
+              <span class="check-item__label">Charged camera / film</span>
+            </li>
+
+          </ul>
+        </div>
+
+        <!-- Featured VIP card -->
+        <div class="featured-card" style="margin-top: var(--space-xl);">
+          <div class="featured-card__icon" aria-hidden="true">★</div>
+          <div>
+            <p class="featured-card__eyebrow">VIP Upgrade</p>
+            <p class="featured-card__title">Press Credential Access</p>
+            <p class="featured-card__body">Get closer than public viewing — secure a period press badge for restricted press row.</p>
+            <button class="featured-card__action" type="button">Learn More</button>
+          </div>
+        </div>
+
+        <div style="margin-top: var(--space-xl);">
+          <button class="btn-primary btn-full" data-goto="green-preparation">Get Ready &rarr;</button>
+        </div>
+
+      </div>
+    </section>
+    <section id="screen-green-preparation" class="screen" data-screen="green-preparation" aria-label="Preparation">
+      <div class="prep-content">
+
+        <!-- Back link -->
+        <button class="btn-ghost" data-goto="green-current-journey" style="margin-top: var(--space-2xl); align-self: flex-start; display: inline-flex; align-items: center; gap: var(--space-xs); font-size: 13px; background: none; border: none; color: var(--teal); font-family: var(--font-body); font-weight: 500; cursor: pointer; padding: var(--space-xs) 0;">
+          &larr; Your Journey
+        </button>
+
+        <h2 class="explore-header__title" style="margin-top: var(--space-lg);">Get Ready</h2>
+
+        <!-- Tab toggle -->
+        <div class="prep-tabs" style="margin-top: var(--space-lg);">
+          <button class="prep-tab active" type="button" data-tab-target="weather">Weather</button>
+          <button class="prep-tab" type="button" data-tab-target="period">Period</button>
+        </div>
+
+        <!-- Weather panel (visible by default) -->
+        <div data-tab-panel="weather">
+
+          <div class="progress-wrap" style="margin-top: var(--space-xl);">
+            <div class="progress-wrap__labels">
+              <span class="text-label">Weather Prep</span>
+              <span class="text-caption" id="green-prep-count">3 of 4 complete</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill progress-fill--forest" id="green-prep-fill" style="width: 75%;"></div>
+            </div>
+          </div>
+
+          <ul class="checklist" style="margin-top: var(--space-lg);" aria-label="Weather checklist">
+
+            <li class="check-item done" data-check>
               <span class="check-box" aria-hidden="true">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                   <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
@@ -1386,6 +1585,30 @@
               </div>
             </li>
 
+            <li class="check-item done" data-check>
+              <span class="check-box" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+              </span>
+              <div>
+                <span class="check-item__label">Light cotton clothing</span>
+                <p class="check-item__hint">July average 33°C / 91°F with high humidity</p>
+              </div>
+            </li>
+
+            <li class="check-item done" data-check>
+              <span class="check-box" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+              </span>
+              <div>
+                <span class="check-item__label">Water and hydration</span>
+                <p class="check-item__hint">Bring at least 2L for the day</p>
+              </div>
+            </li>
+
             <li class="check-item" data-check>
               <span class="check-box" aria-hidden="true">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
@@ -1393,30 +1616,39 @@
                 </svg>
               </span>
               <div>
-                <span class="check-item__label">Charged camera / film</span>
-                <p class="check-item__hint">No modern digital devices draw attention &mdash; bring period-appropriate equipment</p>
+                <span class="check-item__label">Rain layer</span>
+                <p class="check-item__hint">Afternoon thunder likely &mdash; lightweight poncho</p>
               </div>
             </li>
 
           </ul>
-        </div>
 
-        <!-- Section 2: What to Expect -->
-        <div class="prep-section">
-          <div class="section-header">
-            <span class="section-header__title">What to Expect</span>
+        </div><!-- /[data-tab-panel="weather"] -->
+
+        <!-- Period panel (hidden by default) -->
+        <div data-tab-panel="period" class="hidden">
+
+          <div class="progress-wrap" style="margin-top: var(--space-xl);">
+            <div class="progress-wrap__labels">
+              <span class="text-label">Period Prep</span>
+              <span class="text-caption">1 of 2 complete</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill progress-fill--forest" style="width: 50%;"></div>
+            </div>
           </div>
-          <ul class="checklist">
 
-            <li class="check-item" data-check>
+          <ul class="checklist" style="margin-top: var(--space-lg);" aria-label="Period checklist">
+
+            <li class="check-item done" data-check>
               <span class="check-box" aria-hidden="true">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                   <path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
                 </svg>
               </span>
               <div>
-                <span class="check-item__label">Review launch day timeline</span>
-                <p class="check-item__hint">Liftoff sequence, timing, and crowd flow</p>
+                <span class="check-item__label">Period-appropriate clothing</span>
+                <p class="check-item__hint">Late-60s casual dress &mdash; no synthetic modern fabrics</p>
               </div>
             </li>
 
@@ -1427,17 +1659,18 @@
                 </svg>
               </span>
               <div>
-                <span class="check-item__label">Download offline audio commentary</span>
-                <p class="check-item__hint">Live broadcast narration for context during the event</p>
+                <span class="check-item__label">Period camera equipment</span>
+                <p class="check-item__hint">No modern digital &mdash; bring film camera or era-appropriate equivalent</p>
               </div>
             </li>
 
           </ul>
-        </div>
+
+        </div><!-- /[data-tab-panel="period"] -->
 
         <!-- CTA -->
         <div style="margin-top: var(--space-2xl);">
-          <button class="btn-primary btn-full" data-goto="green-ready">I'm Ready</button>
+          <button class="btn-primary btn-full" data-goto="green-ready">All done &mdash; Ready to go</button>
         </div>
 
       </div>
@@ -1445,30 +1678,48 @@
     <section id="screen-green-ready" class="screen" data-screen="green-ready" aria-label="Ready">
       <div class="ready-content">
 
-        <!-- Completion icon -->
         <div class="ready-icon" aria-hidden="true">
           <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
             <path d="M6 15l6 6 12-12" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"/>
           </svg>
         </div>
 
-        <h2 class="ready-title">You're Ready</h2>
-        <p class="ready-body">Your preparation is complete. This is where Era's scope ends &mdash; the physical journey begins with separate equipment.</p>
+        <h2 class="ready-title">Ready to Go</h2>
+        <p class="ready-body">Your preparation is complete. Logistics are locked.</p>
 
-        <!-- Journey summary -->
+        <!-- Journey card with clothing + VIP rows -->
         <div class="journey-card ready-card" style="border-top-color: var(--forest);">
           <div class="journey-card__body">
             <p class="card-title" style="text-transform: uppercase;">The Moon Landing</p>
             <p class="card-subtitle">July 20, 1969 &middot; Cape Canaveral, FL</p>
             <div class="divider"></div>
             <div class="journey-card__row">
-              <span class="text-label">Status</span>
-              <span class="risk-badge green">Ready</span>
+              <span class="text-label">Comfort Clothing</span>
+              <span class="text-label" style="color: var(--teal);">Summer casual</span>
+            </div>
+            <div class="journey-card__row" style="margin-top: var(--space-sm); border-top: 1px solid var(--cream-dark); padding-top: var(--space-sm);">
+              <span class="text-label" style="color: var(--orange);">VIP</span>
+              <span class="text-label" style="color: var(--orange);">Mission Control Access</span>
             </div>
           </div>
         </div>
 
-        <!-- Action -->
+        <!-- Departure logistics -->
+        <div class="logistics-section" style="width: 100%; margin-top: var(--space-lg);">
+          <span class="logistics-section__label">Departure</span>
+          <p class="logistics-section__line">KSC Launch Complex 39A</p>
+          <p class="logistics-section__line">Merritt Island, FL 32953</p>
+          <p class="logistics-section__line">July 16, 1969 &middot; 08:32 AM EST</p>
+        </div>
+
+        <!-- Return logistics -->
+        <div class="logistics-section" style="width: 100%;">
+          <span class="logistics-section__label">Return</span>
+          <p class="logistics-section__line">Depart: July 24, 1969</p>
+          <p class="logistics-section__line">Arrive: July 24, 1969</p>
+          <p class="logistics-section__line">Return Point: Cape Canaveral, FL</p>
+        </div>
+
         <div class="ready-actions">
           <button class="btn-outline btn-full" data-goto="explore-entry">Back to My Trips</button>
         </div>
