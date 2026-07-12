@@ -39,6 +39,10 @@
     // ── Flow C — Precision Search / Amber (Great Fire of London) ─
     { id: 'precision-search-c',        title: 'Precision Search',    noNav: false, noBack: false },
     { id: 'explore-results-c',         title: 'Results',             noNav: false, noBack: false },
+    { id: 'select-journey-c',          title: 'Select Journey',      noNav: false, noBack: false },
+    { id: 'amber-risk-c',              title: 'Risk Assessment',     noNav: false, noBack: false },
+    { id: 'select-alternatives-c',     title: 'Alternatives',        noNav: false, noBack: false },
+    { id: 'green-resolved-c',          title: 'Your Journey',        noNav: false, noBack: false },
 
     // ── Flow C — Surprise Me (legacy) ───────────────────────────
     { id: 'surprise-intent-1',          title: 'Tell Us More',        noNav: false, noBack: false },

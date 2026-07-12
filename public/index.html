@@ -754,28 +754,6 @@
       -webkit-overflow-scrolling: touch;
     }
 
-    .explore-header {
-      padding: var(--space-2xl) 0 var(--space-lg);
-    }
-
-    .explore-header__title {
-      font-family: var(--font-display);
-      font-size: 22px;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      color: var(--teal);
-      line-height: 1.2;
-    }
-
-    .explore-header__sub {
-      font-family: var(--font-body);
-      font-size: var(--text-body);
-      font-weight: 400;
-      color: var(--grey-2);
-      margin-top: var(--space-xs);
-    }
-
     .entry-card-stack {
       display: flex;
       flex-direction: column;
@@ -1734,8 +1712,8 @@
             </div>
           </div>
 
-          <!-- Card 3 — Precision Search (wrapper gives the Flow 3 cue its own space) -->
-          <div style="position: relative; margin-top: 44px;">
+          <!-- Card 3 — Precision Search -->
+          <div style="position: relative;">
 
             <!-- Demo cue 2 — Flow 3 annotation (visible in demo-mode only) -->
             <div class="demo-cue" style="top: -52px; right: 8px; transform: rotate(-1.5deg); text-align: right; max-width: 200px;">
@@ -1824,6 +1802,101 @@
         <button class="btn-primary btn-full" style="margin-top: var(--space-2xl);" data-goto="explore-results-c">Search</button>
 
       </div><!-- /.ps-content -->
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SCREEN — Flow C: Results (Great Fire of London)
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="screen-explore-results-c" class="screen" data-screen="explore-results-c" aria-label="Results">
+      <div class="results-content">
+
+        <p class="results-eyebrow">Pudding Lane, London</p>
+        <p style="font-family: var(--font-body); font-size: 13px; font-weight: 400; color: var(--grey-2); margin-top: 4px; margin-bottom: 14px;">Exact match for your search.</p>
+
+        <!-- Great Fire result card -->
+        <div class="result-card" aria-label="The Great Fire of London — amber risk, Caution">
+          <div class="result-image">
+            <img src="/assets/img/great-fire.png" alt="The Great Fire of London, September 1666" />
+            <div class="result-badge">
+              <span class="risk-badge amber">Caution</span>
+            </div>
+          </div>
+          <div class="result-card__body">
+            <h3 class="card-title">The Great Fire of London</h3>
+            <p class="card-subtitle">September 2, 1666 &middot; Pudding Lane, London</p>
+            <p class="card-body">Fire breaks out at a bakery and spreads through the city over four days.</p>
+            <p class="card-body" style="margin-top: 4px;">17th-century clothing &middot; Water-resistant layer advised</p>
+            <button class="btn-amber btn-full" type="button" style="margin-top: 12px;" data-goto="select-journey-c">Select</button>
+          </div>
+        </div>
+
+        <!-- Featured card — Bankside guided viewing -->
+        <div class="featured-card featured-card--dashed" style="margin-top: 16px; background-image: linear-gradient(rgba(243,233,210,0.88), rgba(243,233,210,0.88)), url('/assets/img/south-bank.png'); background-size: auto, cover; background-position: center, center; background-repeat: no-repeat, no-repeat;">
+          <div>
+            <p class="featured-card__eyebrow">&#9733; Featured &mdash; Guided viewing from Bankside</p>
+            <p class="featured-card__title">Safe vantage across the river</p>
+            <p class="featured-card__body">Historian-led, safe vantage across the river.</p>
+            <button class="featured-card__action" type="button" data-demo-unavailable>Select</button>
+          </div>
+        </div>
+
+        <p class="results-caption" style="margin-top: var(--space-lg); text-align: left;">Only one result because place, era, and month were all specified. No alternatives shown here &mdash; they appear if risk is detected.</p>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SCREEN — Flow C: Select Journey (Great Fire detail)
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="screen-select-journey-c" class="screen" data-screen="select-journey-c" aria-label="Select Journey">
+      <div class="blocked-content">
+
+        <!-- Back link -->
+        <button type="button" data-goto="explore-results-c" style="margin-top: var(--space-2xl); background: none; border: none; padding: 0; font-family: var(--font-body); font-size: 12px; font-weight: 500; color: var(--teal); cursor: pointer; min-height: 44px; display: inline-flex; align-items: center;">&larr; Back to results</button>
+
+        <!-- Hero image -->
+        <div style="margin-top: var(--space-md); height: 180px; overflow: hidden; flex-shrink: 0; background: var(--cream-dark);">
+          <img src="/assets/img/great-fire.png" alt="The Great Fire of London, September 1666" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+        </div>
+
+        <!-- Title -->
+        <h2 style="font-family: var(--font-display); font-size: 24px; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; color: var(--teal); margin-top: var(--space-lg); line-height: 1.1;">The Great Fire of London</h2>
+
+        <!-- Data line + badge -->
+        <div class="card-data-row" style="margin-top: var(--space-xs);">
+          <span style="font-family: var(--font-body); font-size: 12px; font-weight: 500; color: var(--grey-2);">Sept 2, 1666 &middot; Pudding Lane, London</span>
+          <span class="risk-badge amber">Caution</span>
+        </div>
+
+        <!-- Body -->
+        <p style="font-family: var(--font-body); font-size: 14px; font-weight: 400; color: var(--grey-1); line-height: 1.6; margin-top: var(--space-md);">Thomas Farriner&rsquo;s bakery catches fire in the early hours. Dry conditions and wooden buildings let it spread rapidly through the city over four days.</p>
+
+        <div class="divider" style="margin-top: var(--space-lg);"></div>
+
+        <!-- When are you going -->
+        <p class="detail-section-label" style="margin-top: var(--space-lg);">When are you going?</p>
+        <div class="date-row" style="margin-top: var(--space-sm);">
+          <div class="input-group">
+            <label class="input-label">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" style="vertical-align: middle; margin-right: 3px;" aria-hidden="true"><rect x="3" y="4" width="18" height="18"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Depart
+            </label>
+            <input class="input-field" type="text" value="2 Sep 2026" readonly />
+          </div>
+          <div class="input-group">
+            <label class="input-label">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" style="vertical-align: middle; margin-right: 3px;" aria-hidden="true"><rect x="3" y="4" width="18" height="18"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Return
+            </label>
+            <input class="input-field" type="text" value="2 Sep 2026" readonly />
+          </div>
+        </div>
+        <p style="font-family: var(--font-body); font-size: 11px; font-weight: 400; color: var(--grey-3); margin-top: var(--space-sm);">Duration at destination: 3 hours</p>
+
+        <!-- Primary CTA -->
+        <div style="margin-top: var(--space-xl);">
+          <button class="btn-amber btn-full" data-goto="amber-risk-c">Continue &mdash; risk assessment required</button>
+        </div>
+
+      </div>
     </section>
 
     <!-- ══════════════════════════════════════════════════════════
