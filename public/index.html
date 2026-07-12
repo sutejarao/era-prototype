@@ -1970,30 +1970,38 @@
           <p class="explore-header__sub">Same event, different vantage or timing</p>
         </header>
 
-        <!-- Card 1 — Green (Safe): risk-box--green left border, cream bg from base rule -->
-        <div class="risk-box risk-box--green" style="margin-top: var(--space-lg);">
-          <p class="risk-box__title">
-            <span aria-hidden="true">&#128205; </span>Alt. Place &mdash; Southwark Bank
-          </p>
-          <p class="risk-box__body">Across the Thames. Full view, no fire exposure.</p>
-          <div style="margin-top: var(--space-sm); display: flex; align-items: center; gap: var(--space-sm);">
-            <span class="risk-badge green">Safe</span>
-            <span class="card-price" style="margin-top: 0;">From &pound;45</span>
+        <!-- Card 1 — Safe: result-card pattern (image + badge + title + subtitle + price + body + button) -->
+        <div class="result-card" aria-label="Alt. Place — Southwark Bank — Safe">
+          <div class="result-image">
+            <img src="/assets/img/south-bank.png" alt="View of London from Southwark Bank across the Thames" />
+            <div class="result-badge">
+              <span class="risk-badge green">Safe</span>
+            </div>
           </div>
-          <button class="btn-outline btn-full" style="margin-top: var(--space-md);" type="button" data-goto="green-resolved-c">Select</button>
+          <div class="result-card__body">
+            <h3 class="card-title">Alt. Place &mdash; Southwark Bank</h3>
+            <p class="card-subtitle">Across the Thames</p>
+            <p class="card-price">From &pound;45</p>
+            <p class="card-body">Full view, no fire exposure.</p>
+            <button class="btn-safe btn-full" type="button" style="margin-top: 12px;" data-goto="green-resolved-c">Select</button>
+          </div>
         </div>
 
-        <!-- Card 2 — Neutral (Caution): plain grey border, no amber tint -->
-        <div class="risk-box" style="margin-top: var(--space-md); border-left-color: var(--grey-2);">
-          <p class="risk-box__title">
-            <span aria-hidden="true">&#128197; </span>Alt. Time &mdash; Sept 3, evening
-          </p>
-          <p class="risk-box__body">Fire has moved west, Pudding Lane has burned out.</p>
-          <div style="margin-top: var(--space-sm); display: flex; align-items: center; gap: var(--space-sm);">
-            <span class="risk-badge amber">Caution</span>
-            <span class="card-price" style="margin-top: 0;">From &pound;45</span>
+        <!-- Card 2 — Caution: result-card pattern -->
+        <div class="result-card" style="margin-top: 12px;" aria-label="Alt. Time — Sept 3, evening — Caution">
+          <div class="result-image">
+            <img src="/assets/img/great-fire.png" alt="The Great Fire of London, evening of Sept 3" />
+            <div class="result-badge">
+              <span class="risk-badge amber">Caution</span>
+            </div>
           </div>
-          <button class="btn-outline btn-full" style="margin-top: var(--space-md);" type="button" data-demo-unavailable>Select</button>
+          <div class="result-card__body">
+            <h3 class="card-title">Alt. Time &mdash; Sept 3, evening</h3>
+            <p class="card-subtitle">Pudding Lane, London</p>
+            <p class="card-price">From &pound;45</p>
+            <p class="card-body">Fire has moved west, Pudding Lane has burned out.</p>
+            <button class="btn-amber btn-full" type="button" style="margin-top: 12px;" data-demo-unavailable>Select</button>
+          </div>
         </div>
 
         <!-- Card 3 — Dashed Featured: informational only, no button, no price -->
