@@ -1900,6 +1900,54 @@
     </section>
 
     <!-- ══════════════════════════════════════════════════════════
+         SCREEN — Flow C: Amber Risk Assessment (Great Fire)
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="screen-amber-risk-c" class="screen" data-screen="amber-risk-c" aria-label="Risk Assessment">
+      <div class="blocked-content">
+
+        <!-- 1. Warning box — .risk-box.risk-box--amber with amber bg tint -->
+        <div class="risk-box risk-box--amber" style="margin-top: var(--space-2xl); background: rgba(229,115,0,0.06);">
+          <p class="risk-box__title" style="color: var(--orange);">&#9888;&#65039; Elevated Risk</p>
+          <p class="risk-box__body">This location has known hazards at this time.</p>
+        </div>
+
+        <!-- 2. Info card — .risk-box.risk-box--amber, cream background from base card rule -->
+        <div class="risk-box risk-box--amber" style="margin-top: var(--space-md);">
+          <p class="risk-box__title">Why is this elevated?</p>
+          <p class="risk-box__body">Pudding Lane is at the fire&rsquo;s origin point. Bucket chains and firefighting efforts are active nearby &mdash; you may get hosed down by water relay teams. Smoke and heat are present, but not life-threatening at this exact spot in the early hours.</p>
+        </div>
+
+        <!-- 3. Section label — .results-eyebrow (grey, small-caps eyebrow) -->
+        <p class="results-eyebrow" style="padding-top: var(--space-xl);">Mitigation available</p>
+
+        <!-- 4. Mitigation card — .mit-card (neutral green-bordered, not amber) -->
+        <div class="mit-card" style="margin-top: var(--space-sm);">
+          <div class="mit-card__icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square">
+              <path d="M12 3L4 7v5c0 5.25 3.5 9.74 8 11 4.5-1.26 8-5.75 8-11V7L12 3z"/>
+            </svg>
+          </div>
+          <div class="mit-card__content">
+            <p class="risk-box__title" style="font-size: 13px;">Wear water-resistant clothing</p>
+            <p class="risk-box__body" style="font-size: 13px;">Reduces discomfort from firefighting water relay. Provided on request.</p>
+          </div>
+        </div>
+
+        <!-- 5. Helper text — blue left-border accent -->
+        <div style="margin-top: var(--space-lg); border-left: 3px solid #3B6FE8; padding: var(--space-sm) var(--space-md); background: rgba(59,111,232,0.04);">
+          <p style="font-family: var(--font-body); font-size: 13px; font-weight: 400; color: var(--grey-1); line-height: 1.5;">You can continue with mitigation, or choose a safer alternative below.</p>
+        </div>
+
+        <!-- 6. Buttons — amber fill + teal outline -->
+        <div style="margin-top: var(--space-xl); display: flex; flex-direction: column; gap: var(--space-md);">
+          <button class="btn-amber btn-full" data-goto="green-resolved-c">Continue with mitigation</button>
+          <button class="btn-outline btn-full" data-goto="select-alternatives-c">Select alternatives</button>
+        </div>
+
+      </div><!-- /.blocked-content -->
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
          SCREEN 3 — Precision Search
     ═══════════════════════════════════════════════════════════ -->
     <section id="screen-precision-search" class="screen" data-screen="precision-search" aria-label="Precision Search">
