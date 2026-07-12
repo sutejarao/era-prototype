@@ -1469,6 +1469,20 @@ textarea.input-field {
   min-width: 0; /* prevent flex items from overflowing their parent */
 }
 
+/* Scroll fix — content wrappers that could exceed the fixed 812px screen height */
+.results-content,
+.blocked-content,
+.prep-content,
+.intent-content,
+.ready-content,
+.ps-content,
+.explore-content,
+.location-content {
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* ── Quiz screens ────────────────────────────────────────── */
 .quiz-content {
   padding: 52px var(--space-2xl) var(--space-3xl);
