@@ -713,6 +713,9 @@ textarea.input-field {
 .risk-box.risk-box--amber { border-left-color: var(--orange); }
 .risk-box.risk-box--red   { border-left-color: var(--rust); }
 
+/* Scoped padding override — select-alternatives-c only */
+#screen-select-alternatives-c .risk-box { padding: var(--space-xl); }
+
 .risk-box__title {
   font-family: var(--font-display);
   font-size: var(--text-section);
