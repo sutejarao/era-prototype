@@ -35,6 +35,7 @@
     { id: 'quiz-q3',                    title: 'Surprise Me',         noNav: false, noBack: false },
     { id: 'explore-results-surprise',  title: 'Results',             noNav: false, noBack: false },
     { id: 'explore-entry-return',      title: 'Explore',             noNav: false, noBack: true  },
+    { id: 'explore-entry-return-2',    title: 'Explore',             noNav: false, noBack: true  },
 
     // ── Flow C — Precision Search / Amber (Great Fire of London) ─
     { id: 'precision-search-c',        title: 'Precision Search',    noNav: false, noBack: false },
