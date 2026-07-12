@@ -1246,10 +1246,11 @@ textarea.input-field {
   right: var(--space-md);
 }
 
-/* explore-results-surprise / explore-results-c / select-alternatives-c: stack image on top, body below */
+/* explore-results-surprise / explore-results-c / select-alternatives-c / pompeii-results: stack image on top, body below */
 #screen-explore-results-surprise .result-card,
 #screen-explore-results-c .result-card,
-#screen-select-alternatives-c .result-card {
+#screen-select-alternatives-c .result-card,
+#screen-pompeii-results .result-card {
   flex-direction: column;
   align-items: stretch;
 }

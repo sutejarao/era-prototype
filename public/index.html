@@ -3313,33 +3313,27 @@
     <section id="screen-pompeii-results" class="screen" data-screen="pompeii-results" aria-label="Results">
       <div class="results-content">
 
-        <p class="results-eyebrow">1 result found</p>
+        <p class="results-eyebrow">Pompeii, Roman Empire</p>
+        <p style="font-family: var(--font-body); font-size: 13px; font-weight: 400; color: var(--grey-2); margin-top: 4px; margin-bottom: 14px;">Exact match for your search.</p>
 
-        <div
-          class="result-card"
-          role="button"
-          tabindex="0"
-          aria-label="Pompeii — Eruption of Vesuvius, blocked — view risk details"
-          data-goto="red-blocked"
-        >
-          <!-- Image area -->
-          <div class="result-card__image">
-            <img src="/assets/img/vesuvius.png" alt="Eruption of Vesuvius, 79 AD" style="width:100%; height:100%; object-fit:cover;">
-            <div class="result-card__badge">
+        <!-- Vesuvius result card -->
+        <div class="result-card" aria-label="Pompeii — Eruption of Vesuvius, blocked risk">
+          <div class="result-image">
+            <img src="/assets/img/vesuvius.png" alt="Eruption of Vesuvius, 79 AD" />
+            <div class="result-badge">
               <span class="risk-badge red">Blocked</span>
             </div>
           </div>
-
-          <!-- Card body -->
           <div class="result-card__body">
             <h3 class="card-title">Pompeii &mdash; Eruption of Vesuvius</h3>
             <p class="card-subtitle">Aug 24, 79 AD &middot; Pompeii, Roman Empire</p>
-            <p class="card-price">From &pound;59</p>
             <p class="card-body">Mount Vesuvius erupts catastrophically, burying the city under ash and pyroclastic flow within hours.</p>
           </div>
-        </div><!-- /.result-card -->
+        </div>
 
-        <p class="results-caption">All search fields matched &mdash; showing exact result</p>
+        <button class="btn-outline btn-full" type="button" style="margin-top: 12px;" data-goto="red-blocked">Select</button>
+
+        <p class="results-caption" style="margin-top: var(--space-lg); text-align: left;">Only one result because place, era, and month were all specified. Risk will be fully explained on the next screen.</p>
 
       </div><!-- /.results-content -->
     </section>
