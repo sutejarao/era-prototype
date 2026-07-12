@@ -2103,7 +2103,7 @@
             role="button"
             tabindex="0"
             aria-label="Pompeii Eruption of Vesuvius — blocked risk scenario"
-            data-goto="pompeii-results"
+            data-goto="precision-search-d"
           >
             <div class="scenario-card__top">
               <span class="scenario-card__title">Pompeii &mdash; Eruption of Vesuvius</span>
@@ -3134,7 +3134,50 @@
     <!-- ══════════════════════════════════════════════════════════
          FLOW D — Precision Search / Red (Pompeii)
     ═══════════════════════════════════════════════════════════ -->
-    <section id="screen-pompeii-search"      class="screen" data-screen="pompeii-search"      aria-label="Precision Search"></section>
+    <section id="screen-pompeii-search" class="screen" data-screen="pompeii-search" aria-label="Precision Search"></section>
+
+    <section id="screen-precision-search-d" class="screen" data-screen="precision-search-d" aria-label="Precision Search">
+      <div class="ps-content">
+
+        <header class="ps-header">
+          <h2 class="ps-header__title" style="font-size: 24px; font-weight: 700;">Find a Moment</h2>
+        </header>
+
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
+
+          <div class="input-group">
+            <label class="input-label">Event name (optional)</label>
+            <input class="input-field filled" type="text" value="Eruption of Vesuvius" readonly />
+          </div>
+
+          <div class="input-group">
+            <label class="input-label">Place</label>
+            <input class="input-field filled" type="text" value="Pompeii, Italy" readonly />
+          </div>
+
+          <div class="input-group">
+            <label class="input-label">Era or year</label>
+            <input class="input-field filled" type="text" value="79 AD" readonly />
+          </div>
+
+          <div class="input-group">
+            <label class="input-label">Month</label>
+            <input class="input-field filled" type="text" value="August" readonly />
+          </div>
+
+          <div class="input-group">
+            <label class="input-label">Time of day (optional)</label>
+            <input class="input-field filled" type="text" value="Any time" readonly style="border-color: var(--grey-4); color: var(--grey-3);" />
+          </div>
+
+        </div>
+
+        <p style="margin-top: var(--space-lg); padding-left: 10px; border-left: 3px solid var(--grey-3); font-family: var(--font-body); font-size: 11px; font-style: italic; color: var(--grey-3); line-height: 1.5;">All key fields filled — one precise match, no browsing list.</p>
+
+        <button class="btn-primary btn-full" style="margin-top: 16px;" data-goto="pompeii-results">Search</button>
+
+      </div><!-- /.ps-content -->
+    </section>
     <section id="screen-pompeii-results" class="screen" data-screen="pompeii-results" aria-label="Results">
       <div class="results-content">
 

@@ -55,6 +55,7 @@
 
     // ── Flow D — Precision Search / Red (Pompeii) ───────────────
     { id: 'pompeii-search',             title: 'Precision Search',    noNav: false, noBack: false },
+    { id: 'precision-search-d',         title: 'Precision Search',    noNav: false, noBack: false },
     { id: 'pompeii-results',            title: 'Results',             noNav: false, noBack: false },
     { id: 'red-blocked',                title: 'Access Blocked',      noNav: false, noBack: false },
     { id: 'red-alternatives',           title: 'Alternatives',        noNav: false, noBack: false },
