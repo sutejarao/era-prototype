@@ -32,6 +32,9 @@
     // ── Flow 2 — Surprise Me / Quiz ─────────────────────────────
     { id: 'quiz-q1',                    title: 'Surprise Me',         noNav: false, noBack: false },
     { id: 'quiz-q2',                    title: 'Surprise Me',         noNav: false, noBack: false },
+    { id: 'quiz-q3',                    title: 'Surprise Me',         noNav: false, noBack: false },
+    { id: 'explore-results-surprise',  title: 'Results',             noNav: false, noBack: false },
+    { id: 'explore-entry-return',      title: 'Explore',             noNav: false, noBack: true  },
 
     // ── Flow C — Surprise Me (legacy) ───────────────────────────
     { id: 'surprise-intent-1',          title: 'Tell Us More',        noNav: false, noBack: false },
@@ -183,11 +186,35 @@
     setTimeout(safeCleanup, DURATION + 50); // fallback if transitionend never fires
   }
 
+  // ─── Quiz Summary Populate ────────────────────────────────────
+  function populateQuizSummary() {
+    const q1Labels = {
+      'world-changing':    'Something that changed the world',
+      'beauty-spectacle':  'Beauty & spectacle',
+      'conflict-survival': 'Conflict & survival',
+      'everyday-life':     'Everyday life',
+    };
+    const q2Labels = {
+      'ancient':  'Ancient (before 500 CE)',
+      'medieval': 'Medieval (500\u20131500)',
+      'modern':   'Modern (1500\u20131950)',
+      'any-era':  'Any era',
+    };
+    const list = document.getElementById('quiz-summary-list');
+    if (!list) return;
+    const answers = window.quizAnswers || {};
+    const items = [];
+    if (answers.q1) items.push(q1Labels[answers.q1] || answers.q1);
+    if (answers.q2) items.push(q2Labels[answers.q2] || answers.q2);
+    list.innerHTML = items.map(t => `<li>${t}</li>`).join('');
+  }
+
   // ─── Navigate Forward ─────────────────────────────────────────
   function navigateTo(toId) {
     transition(toId, 'forward');
     history.push(toId);
     updateNavBar(toId);
+    if (toId === 'quiz-q3') populateQuizSummary();
   }
 
   // ─── Navigate Back ────────────────────────────────────────────
@@ -236,6 +263,10 @@
     const gotoBtn = e.target.closest('[data-goto]');
     if (gotoBtn) {
       console.log('[Era] goto tap →', gotoBtn.dataset.goto, '| transitioning:', transitioning);
+      if (gotoBtn.dataset.selectEvent) {
+        window.quizAnswers = window.quizAnswers || {};
+        window.quizAnswers.selected = gotoBtn.dataset.selectEvent;
+      }
       navigateTo(gotoBtn.dataset.goto);
       return;
     }
@@ -340,6 +371,33 @@
         nextBtn.style.opacity = '1';
         nextBtn.style.pointerEvents = 'auto';
       }
+    });
+
+    // Demo unavailable toast — for non-wired buttons
+    function showToast(msg) {
+      let toast = document.getElementById('proto-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'proto-toast';
+        toast.style.cssText = [
+          'position:fixed', 'bottom:80px', 'left:50%', 'transform:translateX(-50%)',
+          'background:#2a2a2a', 'color:#fff', 'font-family:var(--font-body)',
+          'font-size:13px', 'padding:10px 18px', 'border-radius:100px',
+          'pointer-events:none', 'opacity:0', 'transition:opacity 0.2s ease',
+          'z-index:9999', 'white-space:nowrap',
+        ].join(';');
+        document.body.appendChild(toast);
+      }
+      toast.textContent = msg;
+      toast.style.opacity = '1';
+      clearTimeout(toast._timer);
+      toast._timer = setTimeout(() => { toast.style.opacity = '0'; }, 2200);
+    }
+
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-demo-unavailable]');
+      if (!btn) return;
+      showToast('Not available in this demo');
     });
 
     // Demo mode toggle

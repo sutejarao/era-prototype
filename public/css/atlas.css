@@ -1180,6 +1180,99 @@ textarea.input-field {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   FILTER CHIP ROW  (Surprise Me results — horizontal scroll)
+   ═══════════════════════════════════════════════════════════════ */
+
+.filter-chip-row {
+  display: flex;
+  gap: var(--space-sm);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+  flex-shrink: 0;
+}
+
+.filter-chip-row::-webkit-scrollbar { display: none; }
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px var(--space-md);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  border-radius: var(--radius-pill);
+  border: var(--border-width) solid var(--teal);
+  color: var(--teal);
+  background: transparent;
+  white-space: nowrap;
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+  flex-shrink: 0;
+}
+
+.filter-chip.active {
+  background: var(--teal);
+  color: var(--cream);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESULT IMAGE  (full-width stacked card image block)
+   ═══════════════════════════════════════════════════════════════ */
+
+.result-image {
+  position: relative;
+  height: 140px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--cream-dark);
+}
+
+.result-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.result-badge {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+}
+
+/* explore-results-surprise: stack image on top, body below */
+#screen-explore-results-surprise .result-card {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   JOURNEY CONFIRMED BANNER  (explore-entry-return screen)
+   ═══════════════════════════════════════════════════════════════ */
+
+.journey-confirmed-banner {
+  background: var(--cream);
+  border: 2px solid var(--forest);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.journey-confirmed-banner__text {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--teal);
+  line-height: 1.3;
+}
+
+/* ═══════════════════════════════════════════════════════════════
    FEATURED CARD  (Sunset Orange left accent)
    ═══════════════════════════════════════════════════════════════ */
 
@@ -1449,4 +1542,37 @@ textarea.input-field {
   font-weight: 400;
   color: var(--grey-2);
   line-height: 1.4;
+}
+
+/* Answers summary recap box */
+.answers-summary {
+  background: var(--cream-dark);
+  border: 1.5px solid var(--teal-light);
+  padding: 12px 14px;
+  flex-shrink: 0;
+}
+
+.answers-summary__label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--grey-2);
+  margin-bottom: 6px;
+}
+
+.answers-summary__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.answers-summary__list li {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--teal);
+  line-height: 1.3;
 }
