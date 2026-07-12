@@ -1284,7 +1284,16 @@
         <p class="quiz-question" style="margin-top: 16px;">What kind of moment interests you?</p>
 
         <!-- Options -->
-        <div style="margin-top: 16px; display: flex; flex-direction: column;">
+        <div style="margin-top: 16px; display: flex; flex-direction: column; position: relative;">
+
+          <!-- Demo cue — Q1: tap "Something that changed the world" (demo-mode only) -->
+          <div class="demo-cue" style="top: 4px; right: 8px; transform: rotate(-2deg); text-align: right; max-width: 120px;">
+            <span style="display: block;">Tap this option</span>
+            <svg width="36" height="20" viewBox="0 0 36 20" fill="none" style="display: block; margin-top: 2px; margin-left: auto;">
+              <path d="M30 5 C 22 4, 12 10, 4 13" stroke="#4A90D9" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+              <path d="M4 13 L 11 9 M 4 13 L 9 19" stroke="#4A90D9" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
 
           <div class="option-card" role="button" tabindex="0"
                data-answer="q1" data-value="world-changing"
@@ -1361,7 +1370,16 @@
         <p class="quiz-question" style="margin-top: 16px;">Any era in mind?</p>
 
         <!-- Options -->
-        <div style="margin-top: 16px; display: flex; flex-direction: column;">
+        <div style="margin-top: 16px; display: flex; flex-direction: column; position: relative;">
+
+          <!-- Demo cue — Q2: tap "Any era" (demo-mode only) -->
+          <div class="demo-cue" style="top: 185px; right: 8px; transform: rotate(-1.5deg); text-align: right; max-width: 120px;">
+            <span style="display: block;">Tap this option</span>
+            <svg width="24" height="28" viewBox="0 0 24 28" fill="none" style="display: block; margin-top: 2px; margin-left: auto;">
+              <path d="M12 2 C 12 10, 12 16, 12 22" stroke="#4A90D9" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+              <path d="M12 22 L 6 16 M 12 22 L 18 16" stroke="#4A90D9" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
 
           <div class="option-card" role="button" tabindex="0"
                data-answer="q2" data-value="ancient"
@@ -1446,7 +1464,16 @@
         <p class="quiz-question" style="margin-top: 20px;">Where in the world?</p>
 
         <!-- Options -->
-        <div style="margin-top: 16px; display: flex; flex-direction: column;">
+        <div style="margin-top: 16px; display: flex; flex-direction: column; position: relative;">
+
+          <!-- Demo cue — Q3: tap "Europe" (demo-mode only) -->
+          <div class="demo-cue" style="top: 4px; right: 8px; transform: rotate(-2deg); text-align: right; max-width: 120px;">
+            <span style="display: block;">Tap this option</span>
+            <svg width="36" height="20" viewBox="0 0 36 20" fill="none" style="display: block; margin-top: 2px; margin-left: auto;">
+              <path d="M30 5 C 22 4, 12 10, 4 13" stroke="#4A90D9" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+              <path d="M4 13 L 11 9 M 4 13 L 9 19" stroke="#4A90D9" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
 
           <div class="option-card" role="button" tabindex="0"
                data-answer="q3" data-value="europe"
@@ -1547,6 +1574,14 @@
 
         <!-- Card 1: Fall of the Berlin Wall — wired to explore-entry-return -->
         <div class="result-card" aria-label="Fall of the Berlin Wall, November 1989 — Safe">
+          <!-- Demo cue — tap Select on this card (demo-mode only) -->
+          <div class="demo-cue" style="top: 196px; left: 8px; transform: rotate(1.5deg); max-width: 90px;">
+            <span style="display: block;">Tap Select</span>
+            <svg width="24" height="28" viewBox="0 0 24 28" fill="none" style="display: block; margin-top: 2px; margin-left: 8px;">
+              <path d="M12 2 C 12 10, 12 16, 12 22" stroke="#4A90D9" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+              <path d="M12 22 L 6 16 M 12 22 L 18 16" stroke="#4A90D9" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
           <div class="result-image">
             <img src="/assets/img/berlin-wall.png" alt="Crowds at the Berlin Wall, November 1989" />
             <div class="result-badge">
@@ -1617,18 +1652,22 @@
          Same layout as explore-entry; all cards neutral, banner added.
     ═══════════════════════════════════════════════════════════ -->
     <section id="screen-explore-entry-return" class="screen" data-screen="explore-entry-return" aria-label="Explore">
-      <div class="explore-content">
+      <div class="explore-content" style="padding-top: 60px;">
 
         <header class="explore-header">
           <h2 class="explore-header__title">Where do you want<br>to start?</h2>
           <p class="explore-header__sub">Choose how you'd like to explore</p>
         </header>
 
-        <div class="entry-card-stack" style="position: relative;">
+        <div class="entry-card-stack" style="position: relative; padding-top: 52px;">
 
           <!-- Demo cue 1 — confirmation banner (visible in demo-mode only) -->
-          <div class="demo-cue" style="top: 6px; right: 8px; transform: rotate(-2deg); text-align: right; max-width: 130px;">
+          <div class="demo-cue" style="top: 4px; right: 8px; transform: rotate(-2deg); text-align: right; max-width: 130px;">
             <span style="display: block;">Nice &mdash; that&rsquo;s saved ✓</span>
+            <svg width="24" height="40" viewBox="0 0 24 40" fill="none" style="display: block; margin-top: 2px; margin-left: auto;">
+              <path d="M12 4 C 12 14, 12 24, 12 34" stroke="#3B6FE8" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+              <path d="M12 34 L 6 27 M 12 34 L 18 27" stroke="#3B6FE8" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
           </div>
 
           <!-- Journey confirmed banner -->
@@ -1695,47 +1734,96 @@
             </div>
           </div>
 
-          <!-- Demo cue 2 — Precision Search / Flow 3 (visible in demo-mode only) -->
-          <div class="demo-cue" style="top: 228px; right: 8px; transform: rotate(-1.5deg); text-align: right; max-width: 200px;">
-            <span style="display: block;">Now try Flow 3 (Amber)<br>&rarr; Great Fire of London</span>
-            <svg width="24" height="32" viewBox="0 0 24 32" fill="none" style="display: block; margin-top: 2px; margin-left: auto;">
-              <!-- Downward arrow pointing at Precision Search card -->
-              <path d="M12 2 C 12 10, 12 18, 12 26" stroke="#3B6FE8" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-              <path d="M12 26 L 6 20 M 12 26 L 18 20" stroke="#3B6FE8" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-          </div>
+          <!-- Card 3 — Precision Search (wrapper gives the Flow 3 cue its own space) -->
+          <div style="position: relative; margin-top: 44px;">
 
-          <!-- Card 3 — Precision Search -->
-          <div
-            class="entry-card entry-card--active"
-            role="button"
-            tabindex="0"
-            aria-label="Precision Search — search by place, date, or event"
-            data-goto="precision-search"
-          >
-            <div class="entry-card__header">
-              <div class="ecard-icon" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
-                  <circle cx="11" cy="11" r="8"/>
-                  <path d="M21 21l-4.35-4.35"/>
-                </svg>
+            <!-- Demo cue 2 — Flow 3 annotation (visible in demo-mode only) -->
+            <div class="demo-cue" style="top: -52px; right: 8px; transform: rotate(-1.5deg); text-align: right; max-width: 200px;">
+              <span style="display: block;">Now try Flow 3 (Amber)<br>&rarr; Great Fire of London</span>
+              <svg width="24" height="22" viewBox="0 0 24 22" fill="none" style="display: block; margin-top: 2px; margin-left: auto;">
+                <path d="M12 2 C 12 8, 12 14, 12 18" stroke="#3B6FE8" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                <path d="M12 18 L 6 12 M 12 18 L 18 12" stroke="#3B6FE8" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+
+            <div
+              class="entry-card entry-card--active"
+              role="button"
+              tabindex="0"
+              aria-label="Precision Search — search by place, date, or event"
+              data-goto="precision-search-c"
+            >
+              <div class="entry-card__header">
+                <div class="ecard-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="M21 21l-4.35-4.35"/>
+                  </svg>
+                </div>
+                <div class="ecard-heading">
+                  <span class="ecard-title">Precision Search</span>
+                </div>
+                <div class="ecard-arrow" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                    <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"/>
+                  </svg>
+                </div>
               </div>
-              <div class="ecard-heading">
-                <span class="ecard-title">Precision Search</span>
-              </div>
-              <div class="ecard-arrow" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-                  <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"/>
-                </svg>
+              <div class="entry-card__body">
+                <p class="ecard-desc">Already know what you're looking for? Search by place, date, or event.</p>
               </div>
             </div>
-            <div class="entry-card__body">
-              <p class="ecard-desc">Already know what you're looking for? Search by place, date, or event.</p>
-            </div>
-          </div>
+
+          </div><!-- /.precision-search wrapper -->
 
         </div><!-- /.entry-card-stack -->
       </div><!-- /.explore-content -->
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SCREEN — Precision Search C (Flow C: Great Fire of London)
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="screen-precision-search-c" class="screen" data-screen="precision-search-c" aria-label="Precision Search">
+      <div class="ps-content">
+
+        <header class="ps-header">
+          <h2 class="ps-header__title">Find a moment</h2>
+        </header>
+
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+
+          <div class="input-group">
+            <label class="input-label">Event name (optional)</label>
+            <input class="input-field filled" type="text" value="Great Fire of London" readonly />
+          </div>
+
+          <div class="input-group">
+            <label class="input-label">Place</label>
+            <input class="input-field filled" type="text" value="Near Pudding Lane, London" readonly />
+          </div>
+
+          <div class="input-group">
+            <label class="input-label">Era or year</label>
+            <input class="input-field filled" type="text" value="1666" readonly />
+          </div>
+
+          <div class="input-group">
+            <label class="input-label">Month</label>
+            <input class="input-field filled" type="text" value="September" readonly />
+          </div>
+
+          <div class="input-group">
+            <label class="input-label">Time of day (optional)</label>
+            <input class="input-field filled" type="text" value="Any time" readonly />
+          </div>
+
+        </div>
+
+        <p class="ps-caption" style="text-align: left; margin-top: var(--space-lg);">All key fields filled — results will show one precise match, not a browsing list.</p>
+
+        <button class="btn-primary btn-full" style="margin-top: var(--space-2xl);" data-goto="explore-results-c">Search</button>
+
+      </div><!-- /.ps-content -->
     </section>
 
     <!-- ══════════════════════════════════════════════════════════

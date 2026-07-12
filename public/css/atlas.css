@@ -1191,6 +1191,8 @@ textarea.input-field {
   scrollbar-width: none;
   padding-bottom: 2px;
   flex-shrink: 0;
+  width: 100%;
+  min-width: 0;
 }
 
 .filter-chip-row::-webkit-scrollbar { display: none; }
@@ -1460,6 +1462,7 @@ textarea.input-field {
 .location-content,
 .quiz-content {
   padding-bottom: 80px;
+  min-width: 0; /* prevent flex items from overflowing their parent */
 }
 
 /* ── Quiz screens ────────────────────────────────────────── */
