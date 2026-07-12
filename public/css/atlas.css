@@ -584,9 +584,9 @@ textarea.input-field {
 
 /* Red — high risk / danger */
 .risk-badge.red {
-  background: rgba(194, 59, 46, 0.12);
-  color: var(--rust);
-  border-color: rgba(194, 59, 46, 0.3);
+  background: var(--rust);
+  color: var(--white);
+  border-color: var(--rust);
 }
 
 /* Dot indicator inside badge */
